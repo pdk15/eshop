@@ -1,0 +1,122 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R.K Electronics | Home</title>
+    <link rel="stylesheet" href="{% static 'core/css/home.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- ✅ HEADER -->
+    <header>
+      <nav class="navbar">
+        <div class="logo-area">
+          <img src="{% static 'image/e-shop.png' %}" alt="logo" />
+          <h2>R.K ELECTRONICS</h2>
+        </div>
+
+        <ul class="nav-link">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="hero-image">
+          <img
+            src="{% static 'image/electronics.jpg' %}"
+            alt="Lifestyle Electronics"
+          />
+          <div class="hero-text">
+            <h1>EXPERIENCE THE FUTURE OF HOME</h1>
+            <p>
+              Discover cutting-edge electronics provided for a smarter life.
+            </p>
+            <a href="{% url 'services' %}" class="btn-primary">Book Service</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="categories">
+        <h3>SHOP BY CATEGORY</h3>
+        <div class="category-grid">
+          <div class="cat-card">
+            <img src="{% static 'image/aplli.webp' %}" alt="Appliances" />
+            <p>HOME APPLIANCES</p>
+          </div>
+          <div class="cat-card">
+            <img src="{% static 'image/electronics.webp' %}" alt="Laptops" />
+            <p>LAPTOPS & DESKTOPS</p>
+          </div>
+          <div class="cat-card">
+            <img src="{% static 'image/phone.webp' %}" alt="Audio" />
+            <p>Phones</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="features-bar">
+        <div class="feature-item">
+          <div class="icon-circle">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+          </div>
+          <span>FAST REPAIR</span>
+        </div>
+
+        <div class="feature-item">
+          <div class="icon-circle">
+            <i class="fa-solid fa-gear"></i>
+          </div>
+          <span>GENUINE PARTS</span>
+        </div>
+
+        <div class="feature-item">
+          <div class="icon-circle">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <span>24/7 SUPPORT</span>
+        </div>
+      </section>
+    </main>
+    <!-- ✅ MESSAGE DISPLAY -->
+    {% comment %} {% if messages %}
+    <div class="message-container">
+      {% for message in messages %}
+      <div class="alert">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %} {% endcomment %}
+
+    <!-- ✅ PAGE CONTENT -->
+    {% block content %} {% endblock %}
+
+    <!-- ✅ FOOTER -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-left">
+          <h3>R.K Electronics</h3>
+          <p>Providing the best electronic products and services since 2025.</p>
+        </div>
+
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 R.K Electronics. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

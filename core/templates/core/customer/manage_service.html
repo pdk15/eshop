@@ -1,0 +1,75 @@
+{% extends "core/customer/c_base.html" %} {% load static %} {% block title %}Manage Services{% endblock %} {% block content %}
+
+<link
+  rel="stylesheet"
+  href="{% static 'core/css/cust_css/manage_service.css' %}"
+/>
+
+<div class="card">
+  <!-- HEADER -->
+  <div class="page-header">
+    <h2>Service Requests</h2>
+  </div>
+
+  <div class="actions">
+    <!-- ALWAYS SHOW BUTTON -->
+    <a href="{% url 'request_service' 0 %}" class="btn request"><i class="fa-solid fa-file-signature"> </i>
+      Request Service
+    </a>
+
+    <a href="{% url 'customer_dashboard' %}" class="btn back">⬅ Back </a>
+  </div>
+
+  <!-- TABLE -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Status</th>
+        <th>Scheduled Date</th>
+        <th>Scheduled Time</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for s in services %}
+      <tr>
+        <td>{{ s.service.s_name }}</td>
+
+        <td>
+          <span
+            class="badge {% if s.status == 'PENDING' %}pending {% elif s.status == 'COMPLETED' %}completed {% else %}postponed {% endif %}" >
+            {{ s.status }}
+          </span>
+        </td>
+
+        <td>{{ s.scheduled_date|default:"Not Assigned" }}</td>
+        <td>{{ s.scheduled_time|default:"--" }}</td>
+        <td>
+          {% if s.status == "PENDING" %}
+          <a
+            href="{% url 'cancel_service' s.id %}"
+            class="btn cancel"
+            onclick="return confirm('Cancel this request?');"
+          >
+            Cancel
+          </a>
+          {% endif %}
+        </td>
+      </tr>
+
+      {% empty %}
+      <tr>
+        <td colspan="4" style="text-align: center">No service requests yet.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+  setInterval(() => location.reload(), 15000);
+</script>
+
+{% endblock %}

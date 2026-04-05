@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'core/css/invoice_preview.css' %}" />
+
+<div class="invoice-wrapper">
+  <div class="invoice-card">
+    <div class="invoice-header">
+      <h2>Invoice Preview</h2>
+      <h4 >Invoice #{{ invoice.In_id }}</h4>
+    </div>
+
+    <div class="p-4">
+      <p><b>Customer:</b> {{ invoice.customer.u_name }}</p>
+      <p><b>Phone:</b> {{ invoice.customer.phone_no }}</p>
+      <p><b>Date:</b> {{ invoice.issued_date|date:"d M Y" }}</p>
+      <p><b>Payment:</b> {{ invoice.payment_method }}</p>
+
+      <hr />
+
+      <table class="invoice-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in invoice.items.all %}
+          <tr>
+            <td>{{ item.product.p_name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>₹{{ item.price }}</td>
+            <td>₹{{ item.total }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <hr />
+
+      <h5>Tax: ₹{{ invoice.tax_amount }}</h5>
+      <h4>Total: ₹{{ invoice.total_amount }}</h4>
+
+      <div class="mt-4">
+        <a
+          href="{% url 'print_invoice' invoice.In_id %}"
+          class="btn btn-success"
+        >
+          🖨 Print
+        </a>
+        <a href="{% url 'invoice_list' %}" class="btn btn-secondary">
+          ⬅ Back
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

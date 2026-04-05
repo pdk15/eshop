@@ -1,0 +1,145 @@
+{% extends "core/base.html" %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/dash.css' %}" />
+
+<section class="dashboard-summary">
+  <div class="card">
+    <h3>Total Products</h3>
+    <p>{{ total_products }}</p>
+  </div>
+
+  <div class="card">
+    <h3>Total Sales</h3>
+    <p>{{ total_sales }}</p>
+  </div>
+
+  <div class="card">
+    <h3>Total Customers</h3>
+    <p>{{ total_customers }}</p>
+  </div>
+
+  <div class="card">
+    <h3>Total Profit</h3>
+    <p>₹{{ total_profit }}</p>
+  </div>
+</section>
+
+<div class="chart-box">
+  <div class="chart-sort">
+    <!-- Chart Type -->
+    <select id="chartType">
+      <option value="line">Line Chart</option>
+      <option value="bar">Bar Chart</option>
+      <option value="scatter">Points</option>
+    </select>
+
+    <!-- Sort -->
+    <select id="sortType">
+      <option value="default">Default (Month)</option>
+      <option value="salesAsc">Sales ↑</option>
+      <option value="salesDesc">Sales ↓</option>
+    </select>
+  </div>
+  <canvas id="monthlySalesChart"></canvas>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const originalLabels = {{ months|safe }};
+    const originalData = {{ monthly_totals|safe }};
+
+    let currentChart;
+
+    function renderChart(type, labels, data) {
+      const ctx = document
+        .getElementById("monthlySalesChart")
+        .getContext("2d");
+
+      if (currentChart) {
+        currentChart.destroy();
+      }
+
+      currentChart = new Chart(ctx, {
+        type: type === "scatter" ? "line" : type,
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Monthly Sales (₹)",
+            data: data,
+            borderWidth: 2,
+            fill: type !== "scatter",
+            tension: 0.3,
+            pointRadius: type === "scatter" ? 6 : 4,
+            pointHoverRadius: 8
+          }]
+        },
+        options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true }
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Month",
+          font: {
+    size: 14,
+    weight: "bold"
+  }
+        }
+      },
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "Sales Amount (₹)",
+          font: {
+    size: 14,
+    weight: "bold"
+  }
+
+        }
+      }
+    }
+  }
+
+      });
+    }
+
+    // Initial load
+    renderChart("line", originalLabels, originalData);
+
+    // Chart type change
+    document.getElementById("chartType").addEventListener("change", function () {
+      renderChart(this.value, originalLabels, originalData);
+    });
+
+    // Sorting logic
+    document.getElementById("sortType").addEventListener("change", function () {
+      let combined = originalLabels.map((label, i) => ({
+        label,
+        value: originalData[i]
+      }));
+
+      if (this.value === "salesAsc") {
+        combined.sort((a, b) => a.value - b.value);
+      } else if (this.value === "salesDesc") {
+        combined.sort((a, b) => b.value - a.value);
+      }
+
+      const newLabels = combined.map(i => i.label);
+      const newData = combined.map(i => i.value);
+
+      renderChart(
+        document.getElementById("chartType").value,
+        newLabels,
+        newData
+      );
+    });
+</script>
+
+{% endblock %}

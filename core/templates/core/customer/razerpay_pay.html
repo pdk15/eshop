@@ -1,0 +1,58 @@
+{% extends "core/customer/c_base.html" %} {% load static %} 
+{% block title %}Payment{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/cust_css/razer.css' %}" />
+
+<div class="card">
+  <!-- HEADER -->
+  <div class="page-header">
+    <h2>Invoice Payment</h2>
+  </div>
+
+  <!-- PAYMENT SECTION -->
+  <div class="payment-box">
+    <h3>Invoice #SI-{{ invoice.id }}</h3>
+    <p class="amount">Amount: ₹ {{ invoice.amount }}</p>
+
+    <button id="rzp-button" class="btn pay">Pay Securely with Razorpay</button>
+    <div class="actions">
+      <a href="{% url 'customer_service_invoices' %}" class="btn back">
+        ← Back
+      </a>
+    </div>
+    <p class="logo">Secure Payment Gateway</p>
+  </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+  var options = {
+    key: "{{ razorpay_key }}",
+    amount: "{{ amount }}",
+    currency: "INR",
+    name: "Service Payment",
+    description: "Invoice Payment",
+    order_id: "{{ order_id }}",
+
+    callback_url: "{% url 'payment_success' %}",
+
+    prefill: {
+      name: "{{ request.user.username }}",
+      email: "test@example.com",
+    },
+
+    theme: {
+      color: "#4f46e5",
+    },
+  };
+
+  var rzp = new Razorpay(options);
+
+  document.getElementById("rzp-button").onclick = function (e) {
+    rzp.open();
+    e.preventDefault();
+  };
+</script>
+
+{% endblock %}

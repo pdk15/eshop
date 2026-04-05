@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/sales_details.css' %}" />
+<div class="product-container">
+  <h4 class="page-title">Sales Details – {{ day }}</h4>
+
+  {% for inv in invoices %}
+  <div class="card mb-3">
+    <div class="card-header">
+      <b>Invoice {{ inv.In_id }}</b> | {{ inv.customer.u_name }} |
+      {{inv.customer.phone_no | default:"N/A" }} | {{ inv.payment_method }}
+    </div>
+
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Warranty (Months)</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in inv.items.all %}
+        <tr>
+          <td data-label="Product">{{ item.product.p_name }}</td>
+          <td data-label="Qty">{{ item.quantity }}</td>
+          <td data-label="Price">₹{{ item.price }}</td>
+          <td data-label="Warranty">{{ item.warranty }}</td>
+          <td data-label="Total">₹{{ item.total }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" class="text-muted text-center">
+            No items found for this invoice
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% empty %}
+  <p class="text-muted">No sales found for this date.</p>
+  {% endfor %}
+</div>
+{% endblock %}

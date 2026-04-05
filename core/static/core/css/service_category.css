@@ -1,0 +1,146 @@
+/* ===============================
+   PAGE BACKGROUND
+================================ */
+body {
+    background: linear-gradient(135deg, #74b9ff, #a29bfe);
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+
+/* ===============================
+   FORM CONTAINER (CARD STYLE)
+================================ */
+.cat-container {
+    max-width: 520px;
+    margin: 60px auto;
+    padding: 35px 40px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+
+/* ===============================
+   FORM TITLE (auto if h2 added)
+================================ */
+.cat-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2d3436;
+}
+
+
+/* ===============================
+   DJANGO FORM STYLE
+================================ */
+.cat-container form p {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+/* labels */
+.cat-container label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #2f3640;
+}
+
+
+/* inputs */
+.cat-container input,
+.cat-container select,
+.cat-container textarea {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #dcdde1;
+    font-size: 15px;
+    transition: all 0.25s ease;
+    outline: none;
+}
+
+/* focus animation */
+.cat-container input:focus,
+.cat-container select:focus,
+.cat-container textarea:focus {
+    border-color: #0984e3;
+    box-shadow: 0 0 0 3px rgba(9,132,227,0.15);
+    transform: scale(1.02);
+}
+
+
+/* ===============================
+   BUTTON AREA
+================================ */
+.cat-container form {
+    text-align: center;
+}
+
+/* base button */
+.btn1 {
+    display: inline-block;
+    padding: 10px 22px;
+    margin: 10px 6px 0;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+
+/* SAVE BUTTON */
+.btn-primary {
+    background: linear-gradient(135deg, #0984e3, #00cec9);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+}
+
+
+/* BACK BUTTON */
+.btn-secondary {
+    background: #636e72;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #2d3436;
+    transform: translateY(-2px);
+}
+
+
+/* ===============================
+   SMALL SCREEN RESPONSIVE
+================================ */
+@media (max-width: 600px) {
+    .cat-container {
+        margin: 30px 15px;
+        padding: 25px;
+    }
+
+    .btn1 {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+
+/* ===============================
+   FADE ANIMATION
+================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

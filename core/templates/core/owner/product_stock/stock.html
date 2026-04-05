@@ -1,0 +1,45 @@
+{% extends "core/base.html" %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/stock.css' %}" />
+
+<div class="page-container">
+  <h3 class="page-title">Product Stock</h3>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Category</th>
+        <th>Available Qty</th>
+        <th>Sold Qty</th>
+        <th>Selling Price</th>
+        <th>Stock Value</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in stock_data %}
+      <tr>
+        <td>{{ r.product.p_name }}</td>
+        <td>{{ r.product.category.ct_name }}</td>
+        <td>{{ r.quantity }}</td>
+        <td>{{ r.sold_qty }}</td>
+        <td>₹{{ r.price }}</td>
+        <td>₹{{ r.stock_value }}</td>
+
+        <td>
+          {% if r.status == "Low Stock" %}
+          <span class="badge bg-warning">Low</span>
+          {% elif r.status == "Out of Stock" %}
+          <span class="badge bg-danger">Out</span>
+          {% else %}
+          <span class="badge bg-success">In</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

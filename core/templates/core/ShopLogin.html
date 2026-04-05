@@ -1,0 +1,101 @@
+{% extends 'core/base_auth.html' %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/login.css' %}" />
+
+<div class="login-container">
+  <h1>Login</h1>
+
+  <form method="post" autocomplete="off">
+    {% csrf_token %}
+
+    <!-- ROLE -->
+    <label>Login As</label>
+    <select name="role" id="role" onchange="toggleForm()">
+      <option
+        value="customer"
+        {%
+        if
+        selected_role=""
+        ="customer"
+        %}selected{%
+        endif
+        %}
+      >
+        Customer
+      </option>
+      <option
+        value="shop_owner"
+        {%
+        if
+        selected_role=""
+        ="shop_owner"
+        %}selected{%
+        endif
+        %}
+      >
+        Shop Owner
+      </option>
+    </select>
+
+    <!-- SHOP OWNER LOGIN -->
+    <div id="shop-owner-form" style="display: none">
+      <label>Username</label>
+      <input type="text" name="sw_uname" value="{{ sw_uname }}" />
+
+      <label>Password</label>
+      <div class="password-box">
+        <input type="password" class="password-input" name="password" />
+        <i class="fa-solid fa-eye togglePassword"></i>
+      </div>
+    </div>
+
+    <!-- CUSTOMER LOGIN -->
+    <div id="customer-form" style="display: none">
+      <label>Username</label>
+      <input type="text" name="u_name" value="{{ u_name }}" />
+
+      <label>Password</label>
+      <div class="password-box">
+        <input type="password" class="password-input" name="c_password" />
+        <i class="fa-solid fa-eye togglePassword"></i>
+      </div>
+    </div>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <p class="register-link">
+    New user?
+    <a href="{% url 'register' %}">Register here</a>
+  </p>
+</div>
+
+<script>
+  function toggleForm() {
+    const role = document.getElementById("role").value;
+    document.getElementById("shop-owner-form").style.display =
+      role === "shop_owner" ? "block" : "none";
+    document.getElementById("customer-form").style.display =
+      role === "customer" ? "block" : "none";
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    toggleForm();
+
+    document.querySelectorAll(".togglePassword").forEach((icon) => {
+      icon.addEventListener("click", function () {
+        const input = this.parentElement.querySelector(".password-input");
+
+        if (input.type === "password") {
+          input.type = "text";
+          this.classList.replace("fa-eye", "fa-eye-slash");
+        } else {
+          input.type = "password";
+          this.classList.replace("fa-eye-slash", "fa-eye");
+        }
+      });
+    });
+  });
+</script>
+
+{% endblock %}

@@ -1,0 +1,169 @@
+/* ===============================
+   PAGE BACKGROUND
+================================ */
+
+body {
+    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}   
+
+/* ===============================
+   CONTAINER
+================================ */
+
+.status-container {
+    max-width: 520px;
+    margin: 60px auto;
+    padding: 20px;
+}
+
+/* ===============================
+   TITLE
+================================ */
+
+.page-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 30px;
+}
+
+/* ===============================
+   FORM CARD (GLASS EFFECT)
+================================ */
+
+.form-card {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    padding: 35px 30px;
+    border-radius: 16px;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.08),
+        0 2px 8px rgba(0,0,0,0.05);
+    transition: 0.3s ease;
+}
+
+.form-card:hover {
+    transform: translateY(-4px);
+}
+
+/* ===============================
+   INFO BOX
+================================ */
+
+.info-box {
+    background: #f1f5f9;
+    border-left: 5px solid #3b82f6;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.info-box p {
+    margin: 6px 0;
+    color: #374151;
+    font-size: 15px;
+}
+
+/* ===============================
+   LABEL
+================================ */
+
+label {
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* ===============================
+   SELECT DROPDOWN
+================================ */
+
+select {
+    width: 100%;
+    padding: 13px 15px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    background: #f9fafb;
+    transition: all 0.25s ease;
+}
+
+select:focus {
+    outline: none;
+    border-color: #2563eb;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+}
+
+/* ===============================
+   BUTTON ROW
+================================ */
+
+.button-row {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* ===============================
+   BUTTON BASE
+================================ */
+
+.btn {
+    padding: 12px 26px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s ease;
+}
+
+/* SAVE BUTTON */
+
+.save {
+    background: linear-gradient(135deg,#2563eb,#3b82f6);
+    color: white;
+    box-shadow: 0 6px 18px rgba(37,99,235,0.35);
+}
+
+.save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(37,99,235,0.4);
+}
+
+/* BACK BUTTON */
+
+.back {
+    background: #17a2b8;
+    color: #ffffff;
+}
+
+.back:hover {
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================ */
+
+@media (max-width: 480px) {
+
+    .status-container {
+        margin: 30px 15px;
+    }
+
+    .button-row {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}

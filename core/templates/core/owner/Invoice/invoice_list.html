@@ -1,0 +1,172 @@
+{% extends 'core/base.html' %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/invoice_list.css' %}" />
+
+<div class="invoice-wrapper">
+  <div class="invoice-card">
+    <div class="invoice-header">
+      <h4>Manage Invoices</h4>
+    </div>
+
+    {% if invoices %}
+    <div class="table-responsive">
+      <form
+        method="get"
+        class="invoice-filter-form"
+        style="margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap"
+      >
+        <!-- Search by customer -->
+        <input
+          type="text"
+          name="search"
+          value="{{ search_query }}"
+          placeholder="Search by customer"
+          class="form-control"
+          style="flex: 1"
+        />
+
+        <!-- Sort -->
+        <select name="sort" class="form-select">
+          <option value="">Sort by</option>
+          <option value="In_id" {% if sort_by == "In_id" %}selected{% endif %}>
+            Invoice # Asc
+          </option>
+          <option
+            value="-In_id"
+            {%
+            if
+            sort_by=""
+            ="-In_id"
+            %}selected{%
+            endif
+            %}
+          >
+            Invoice # Desc
+          </option>
+          <option
+            value="issued_date"
+            {%
+            if
+            sort_by=""
+            ="issued_date"
+            %}selected{%
+            endif
+            %}
+          >
+            Date Asc
+          </option>
+          <option
+            value="-issued_date"
+            {%
+            if
+            sort_by=""
+            ="-issued_date"
+            %}selected{%
+            endif
+            %}
+          >
+            Date Desc
+          </option>
+          <option
+            value="total_amount"
+            {%
+            if
+            sort_by=""
+            ="total_amount"
+            %}selected{%
+            endif
+            %}
+          >
+            Amount Asc
+          </option>
+          <option
+            value="-total_amount"
+            {%
+            if
+            sort_by=""
+            ="-total_amount"
+            %}selected{%
+            endif
+            %}
+          >
+            Amount Desc
+          </option>
+        </select>
+
+        <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i>
+Filter</button>
+      </form>
+
+      <table class="table invoice-table align-middle">
+        <thead>
+          <tr>
+            <th>Sr. No.</th>
+            <th>Invoice No</th>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Date</th>
+            <th>Total (₹)</th>
+            <th>Payment</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for inv in invoices %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+
+            <td class="invoice-no">INV-{{ inv.In_id }}</td>
+
+            <td>{{ inv.customer.u_name }}</td>
+
+            <td>{{ inv.customer.phone_no }}</td>
+
+            <td>{{ inv.issued_date|date:"d M Y" }}</td>
+
+            <td class="invoice-amount">₹{{ inv.total_amount }}</td>
+
+            <td>
+              <span class="badge-payment badge-cash">
+                {{ inv.payment_method }}
+              </span>
+            </td>
+
+            <td class="action-col">
+              <a
+                href="{% url 'invoice_preview' inv.In_id %}"
+                class="btn btn-info action-btn"
+                title="View Invoice"
+              >
+                👁
+              </a>
+
+              <a
+                href="{% url 'print_invoice' inv.In_id %}"
+                class="btn btn-success action-btn"
+                title="Print Invoice"
+              >
+                🖨
+              </a>
+
+              <a
+                href="{% url 'delete_invoice' inv.In_id %}"
+                class="btn btn-danger action-btn"
+                onclick="return confirm('Delete this invoice?');"
+                title="Delete Invoice"
+              >
+                🗑
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="text-muted text-center mt-4">No invoices found</p>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

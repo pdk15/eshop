@@ -1,0 +1,248 @@
+/* ===============================
+   PAGE BACKGROUND
+=================================*/
+.calendar-page {
+    padding: 25px;
+    background: #f1f4f9;
+    min-height: 100vh;
+    font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* ===============================
+   HEADER
+=================================*/
+.calendar-header h2 {
+    font-size: 26px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 4px;
+}
+
+.calendar-header p {
+    color: #7b8a97;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* ===============================
+   CARD CONTAINER
+=================================*/
+.calendar-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.06),
+        0 2px 6px rgba(0,0,0,0.04);
+}
+
+/* ===============================
+   FULLCALENDAR BASE
+=================================*/
+.fc {
+    background: white;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+/* ===============================
+   TOOLBAR
+=================================*/
+.fc-toolbar-title {
+    font-size: 22px !important;
+    font-weight: 600;
+    color: #34495e;
+}
+
+/* Buttons */
+.fc-button {
+    background: #2ecc71 !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 6px 14px !important;
+    font-size: 13px !important;
+    transition: 0.25s;
+}
+
+.fc-button:hover {
+    background: #27ae60 !important;
+}
+
+.fc-button-active {
+    background: #34495e !important;
+}
+
+/* Today Button */
+.fc-today-button {
+    background: #3498db !important;
+}
+
+/* ===============================
+   DAY HEADER (Sun Mon Tue)
+=================================*/
+.fc-col-header-cell {
+    background: #f8fafc;
+    font-weight: 600;
+    color: #2c3e50;
+    padding: 10px 0;
+}
+
+/* ===============================
+   DAY CELLS
+=================================*/
+.fc-daygrid-day {
+    transition: 0.2s;
+}
+
+.fc-daygrid-day:hover {
+    background: #f5f9ff;
+}
+
+/* Day numbers */
+.fc-daygrid-day-number {
+    font-size: 14px;
+    font-weight: 500;
+    color: #34495e;
+}
+
+/* Today Highlight */
+.fc-day-today {
+    background: rgba(46, 204, 113, 0.12) !important;
+}
+
+/* ===============================
+   GRID LINES
+=================================*/
+.fc-scrollgrid {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e6ecf2;
+}
+
+/* ===============================
+   EVENTS STYLE
+=================================*/
+.fc-event {
+    background: #3498db !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 3px 6px;
+    font-size: 12px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.fc-event:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* ===============================
+   WEEKEND COLOR
+=================================*/
+.fc-day-sun {
+    background: #fffafa;
+}
+
+.fc-day-sat {
+    background: #fbfdff;
+}
+
+/* ===============================
+   RESPONSIVE
+=================================*/
+@media (max-width: 768px) {
+
+    .calendar-page {
+        padding: 10px;
+    }
+
+    .fc-toolbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .fc-toolbar-title {
+        font-size: 18px !important;
+    }
+}
+
+/* ===============================
+   CARD CONTAINER (PRODUCT STOCK STYLE)
+================================ */
+
+.stock-card {
+    width: 90%;
+    max-width: 1300px;
+    margin: 40px auto;
+    background: #f2f2f2;
+    border-radius: 14px;
+    padding: 25px 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* TITLE */
+.card-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* ===============================
+   FULLCALENDAR STYLE
+================================ */
+
+#calendar {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+/* toolbar */
+.fc-toolbar-title {
+    font-size: 22px !important;
+    font-weight: 600;
+}
+
+/* buttons */
+.fc-button {
+    background: #2ecc71 !important;
+    border: none !important;
+    border-radius: 6px !important;
+}
+
+.fc-button:hover {
+    background: #27ae60 !important;
+}
+
+/* header days */
+.fc-col-header-cell {
+    background: #f7f7f7;
+    font-weight: 600;
+}
+
+/* today highlight */
+.fc-day-today {
+    background: rgba(46,204,113,0.15) !important;
+}
+
+/* hover effect */
+.fc-daygrid-day:hover {
+    background: #f9fbff;
+}
+
+/* events */
+.fc-event {
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 3px 6px;
+    font-size: 12px;
+}
+
+/* calendar border cleanup */
+.fc-scrollgrid {
+    border-radius: 10px;
+    overflow: hidden;
+}

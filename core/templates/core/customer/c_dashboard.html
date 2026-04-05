@@ -1,0 +1,20 @@
+{% extends "core/customer/c_base.html" %} {% load static %} {% block title%}Dashboard{% endblock %} {% block content %}
+
+<!-- Dashboard CSS -->
+<link rel="stylesheet" href="{% static 'core/css/cust_css/dashboard.css' %}" />
+
+<div class="card">
+  <div class="summary-box">
+    <div class="summary">
+      <h3>{{ pending_services }}</h3>
+      <p>Pending Services</p>
+    </div>
+
+    <div class="summary">
+      <h3>{{ completed_services }}</h3>
+      <p>Completed Services</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% load static %}
+<header>
+  <style>
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0f172a;
+      padding: 12px 30px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-area img {
+      width: 45px;
+    }
+
+    .logo-area h2 {
+      color: #fff;
+    }
+
+    .nav-link {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-link a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-link a:hover {
+      color: #38bdf8;
+    }
+  </style>
+  <nav class="navbar">
+    <div class="logo-area">
+      <img src="{% static 'image/e-shop.png' %}" alt="logo" />
+      <h2>R.K ELECTRONICS</h2>
+    </div>
+
+    <ul class="nav-link">
+      <li>
+        <a href="{% url 'home' %}" class="tb1"
+          ><i class="fa-solid fa-house"></i> Home</a
+        >
+      </li>
+      <li>
+        <a href="{% url 'services' %}" class="tb1"
+          ><i class="fa-solid fa-gear"></i> Services</a
+        >
+      </li>
+      <li>
+        <a href="{% url 'about' %}" class="tb1"
+          ><i class="fa-solid fa-circle-info"></i> About Us</a
+        >
+      </li>
+      <li>
+        <a href="{% url 'login' %}" class="tb1"
+          ><i class="fa-solid fa-user"></i> Login</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>

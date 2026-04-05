@@ -1,0 +1,72 @@
+{% extends "core/base.html" %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/prodManage.css' %}" />
+
+<div class="product-container">
+  <!-- PAGE TITLE -->
+  <h2 class="title">Product Details</h2>
+
+  <!-- ACTION BUTTONS -->
+  <div class="action-bar">
+    <a class="btn btn-primary" href="{% url 'product_add' %}">
+      <i class="fa fa-plus-circle"></i> Add Product
+    </a>
+
+    <a class="btn btn-secondary" href="{% url 'cat_list' %}">
+      <i class="fa fa-th-list"></i> Manage Categories
+    </a>
+
+    <a class="btn btn-third" href="{% url 'shop_analysis' %}"> ⬅ Back </a>
+  </div>
+
+  <!-- PRODUCT TABLE -->
+  <div class="table-wrapper">
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price (₹)</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for p in products %}
+        <tr>
+          <!-- PRODUCT NAME -->
+          <td>{{ p.p_name }}</td>
+
+          <!-- CATEGORY SAFE DISPLAY -->
+          <td>{{ p.category.ct_name|default:"No Category" }}</td>
+
+          <!-- PRICE -->
+          <td>₹ {{ p.price }}</td>
+
+          <!-- ACTIONS -->
+          <td class="actions">
+            <a href="{% url 'product_update' p.pk %}" class="btn btn-edit">
+              Edit
+            </a>
+
+            <a
+              href="{% url 'delete_con' p.pk %}"
+              class="btn btn-delete"
+              onclick="return confirm('Delete this product?');"
+            >
+              Delete
+            </a>
+          </td>
+        </tr>
+
+        {% empty %}
+        <tr>
+          <td colspan="4" class="empty-row">No products available.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

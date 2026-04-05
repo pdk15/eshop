@@ -1,0 +1,81 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="{% static 'core/css/cust_css/cust_dash.css' %}"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- SIDEBAR -->
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <h2>Customer Panel</h2>
+
+        <a
+          href="{% url 'customer_dashboard' %}"
+          class="{% if request.resolver_match.url_name == 'customer_dashboard' %}active{% endif %}"
+        >
+          Dashboard
+        </a>
+
+        <!-- SERVICE REQUEST -->
+        <a
+          href="{% url 'manage_services' %}"
+          class="{% if request.resolver_match.url_name == 'manage_services' %}active{% endif %}"
+        >
+          Request Service
+        </a>
+
+        <!-- INVOICES -->
+        <a
+          href="{% url 'customer_service_invoices' %}"
+          class="{% if request.resolver_match.url_name == 'customer_invoices' %}active{% endif %}"
+        >
+          My Invoices
+        </a>
+
+        <a href="{% url 'logout' %}">Logout</a>
+      </div>
+
+      <!-- MAIN AREA -->
+      <div class="main">
+        <!-- Messages -->
+        {% if messages %}
+        <div class="message-container">
+          {% for message in messages %}
+          <div class="alert {{ message.tags }}" id="msg">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- HEADER -->
+        <div class="top-header">
+          <h2>{% block title %}Customer Panel{% endblock %}</h2>
+          <div class="profile-box">
+            Hello, {% if customer %} {{ customer.u_name }} {% else %} 
+            Guest {% endif %}
+          </div>
+        </div>
+
+        <!-- PAGE CONTENT -->
+        {% block content %} {% endblock %}
+      </div>
+    </div>
+  </body>
+
+  <script>
+    setTimeout(() => {
+      const msg = document.getElementById("msg");
+      if (msg) msg.style.display = "none";
+    }, 3000); // hides after 3 sec
+  </script>
+</html>

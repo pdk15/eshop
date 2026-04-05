@@ -1,0 +1,70 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{% block title %}R.K Electronics{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'core/css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/css/about.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/css/home_service.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- ✅ HEADER -->
+    <header>
+      <nav class="navbar">
+        <div class="logo-area">
+          <img src="{% static 'image/e-shop.png' %}" alt="logo" />
+          <h2>R.K ELECTRONICS</h2>
+        </div>
+
+        <ul class="nav-link">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ✅ MESSAGE DISPLAY -->
+    {% if messages %}
+    <div class="message-container">
+      {% for message in messages %}
+      <div class="alert">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- ✅ PAGE CONTENT -->
+    {% block content %} {% endblock %}
+
+    <!-- ✅ FOOTER -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-left">
+          <h3>R.K Electronics</h3>
+          <p>Providing the best electronic products and services since 2025.</p>
+        </div>
+
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 R.K Electronics. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

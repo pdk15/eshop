@@ -1,0 +1,82 @@
+{% extends "core/customer/c_base.html" %} {% load static %} {% block content %}
+
+<link
+  rel="stylesheet"
+  href="{% static 'core/css/cust_css/invoice_detail.css' %}"
+/>
+
+<div class="card">
+  <div class="page-header">
+    <h2>Service Invoices</h2>
+  </div>
+
+  {% if invoices %}
+  <div class="table-responsive">
+    <a href="{% url 'customer_dashboard' %}" class="btn back">⬅ Back </a>
+
+    <table class="invoice-table">
+      <thead>
+        <tr>
+          <th>Invoice No</th>
+          <th>Service</th>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for invoice in invoices %}
+        <tr>
+          <!-- Invoice Number -->
+          <td>#SI-{{ invoice.id }}</td>
+
+          <!-- Service Name -->
+          <td>{{ invoice.service_request.service.s_name }}</td>
+
+          <!-- Date -->
+          <td>{{ invoice.invoice_date|date:"d M Y" }}</td>
+
+          <!-- Amount -->
+          <td>₹ {{ invoice.amount }}</td>
+
+          <!-- Payment Status -->
+          <td>
+            {% if invoice.is_paid %}
+            <span class="paid">Paid</span>
+            {% else %}
+            <span class="pending">Pending</span>
+            {% endif %}
+          </td>
+
+          <!-- Action Buttons -->
+          <td>
+            <!-- Always allow invoice download -->
+            <a
+              href="{% url 'download_service_invoice_pdf' invoice.pk %}"
+              class="btn btn-download"
+            >
+              <i class="fa-solid fa-download"></i> Download PDF
+            </a>
+            {% if not invoice.is_paid %}
+            <a href="{% url 'payment_options' invoice.id %}" class="btn pay">
+              <i class="fa-solid fa-credit-card"></i> Pay
+            </a>
+            {% endif %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="6" class="empty">No Invoices yet.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="text-muted text-center mt-4">No invoices found.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>eShop Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/css/login.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <header class="app-header">
+      <div class="header-right">
+        <!-- GENERAL NOTIFICATIONS -->
+        <!-- GENERAL NOTIFICATIONS -->
+        <!-- NOTIFICATION ICON -->
+                 {% comment %}
+
+        <div class="notify-icon">
+          <a href="#" id="notifyToggle">
+            Notification
+            <i class="fas fa-bell"></i>
+            <span class="notify-badge">{{ notification_count }}</span>
+          </a>
+        </div>
+
+        <div class="calendar-icon">
+          <a href="{% url 'service_calendar_page' %}">
+            <i class="fas fa-calendar-alt"></i> Calendar
+          </a>
+        </div>
+       
+
+        <!-- NOTIFICATION OVERLAY -->
+        <div class="notify-overlay" id="notifyOverlay">
+          <div class="notify-center">
+            <div class="notify-header">
+              <h3>Notification Center</h3>
+              <button id="closeNotify">✕</button>
+            </div>
+
+            <!-- FILTER -->
+
+            <div class="notify-filters">
+              <select id="typeFilter">
+                <option value="low_stock">Low Stock</option>
+                <option value="service">Service Requests</option>
+                <option value="info">Info</option>
+              </select>
+            </div>
+            <!-- LOW STOCK TABLE -->
+            <table class="notify-table notify-low_stock">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Category</th>
+                  <th>Product</th>
+                  <th>Available Qty</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for n in notifications %} {% if n.notification_type ==
+                "low_stock" %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ n.category }}</td>
+                  <td>{{ n.p_name }}</td>
+                  <td>{{ n.available_qty }}</td>
+                </tr>
+                {% endif %} {% empty %}
+
+                <tr>
+                  <td colspan="4" style="text-align: center">
+                    No low stock alerts
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+            <!-- SERVICE REQUEST TABLE -->
+            <table class="notify-table notify-service" style="display: none">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Customer</th>
+                  <th>Service Info</th>
+                  <th>Date & Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for n in notifications %} {% if n.notification_type ==
+                "service" %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ n.customer_name }}</td>
+                  <td>{{ n.message }}</td>
+                  <td>{{ n.created_at|date:"d M Y, h:i A" }}</td>
+                </tr>
+                {% endif %} {% empty %}
+                <tr>
+                  <td colspan="4" style="text-align: center">
+                    No Service Requests
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+            <!-- INFO TABLE -->
+            <table class="notify-table notify-info" style="display: none">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Message</th>
+                  <th>Date & Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for n in notifications %} {% if n.notification_type == "info"
+                %}
+
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ n.message }}</td>
+                  <td>{{ n.created_at|date:"d M Y, h:i A" }}</td>
+                </tr>
+                {% endif %} {% empty %}
+                <tr>
+                  <td colspan="4" style="text-align: center">No Information</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% endcomment %}
+          </div>
+        </div>
+
+        <!-- USER -->
+        <div class="upper-nav">
+          <p class="welcome">Hello ,</p>
+
+          <div class="profile-menu">
+            <span class="profile-name"> {{ shopowner.sw_uname }} ▾ </span>
+
+            <div class="dropdown">
+              <a href="{% url 'ow_detail' %}">Profile</a>
+              <span class="role">Role: Shop Owner</span>
+              <a href="{% url 'logout' %}" class="logout">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="side-nav">
+      <img src="{% static '/image/e-shop.png' %}" alt="" />
+      <a
+        href="{% url 'shop_analysis' %}"
+        class="{% if request.path == '/dash' %}active{% endif %}"
+        ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+      >
+      <a
+        href="{% url 'manage_prod' %}"
+        class="{% if request.path == '/products/manage' %}active{% endif %}"
+        ><i class="fas fa-box"></i> Manage Products</a
+      >
+      <a
+        href="{% url 'ser_list' %}"
+        class="{% if request.path == '/services' %}active{% endif %}"
+        ><i class="fas fa-cogs"></i> Manage Services</a
+      >
+
+      <a href="{% url 'sell_product' %}"
+        ><i class="fas fa-shopping-cart"></i> Sell Product</a
+      >
+      <a href="{% url 'invoice_list' %}"
+        ><i class="fas fa-file-invoice"></i> Manage Invoices</a
+      >
+      <a href=" {% url 'sales_report' %}"
+        ><i class="fas fa-chart-line"></i> Sales Reports</a
+      >
+      <a href=" {% url 'product_stock' %}"
+        ><i class="fas fa-warehouse"></i> Product Stock</a
+      >
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+      {% block content %}{% csrf_token %}{% endblock %}
+    </div>
+
+    <span id="notif-count">0</span>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+
+    <script>
+      function loadNotifications() {
+        fetch("/api/notifications/")
+          .then((res) => res.json())
+          .then((data) => {
+            document.getElementById("notif-count").innerText = data.count;
+          });
+      }
+
+      setInterval(loadNotifications, 5000);
+
+      // Optional: Highlight dynamic links
+      const links = document.querySelectorAll(".side-nav a");
+      links.forEach((link) => {
+        if (link.href === window.location.href) link.classList.add("active");
+      });
+
+      const notifyToggle = document.getElementById("notifyToggle");
+      const notifyOverlay = document.getElementById("notifyOverlay");
+      const closeNotify = document.getElementById("closeNotify");
+      const typeFilter = document.getElementById("typeFilter");
+
+      notifyToggle.onclick = (e) => {
+        e.preventDefault();
+        notifyOverlay.style.display = "flex";
+      };
+
+      closeNotify.onclick = () => {
+        notifyOverlay.style.display = "none";
+      };
+
+      notifyOverlay.onclick = (e) => {
+        if (e.target === notifyOverlay) {
+          notifyOverlay.style.display = "none";
+        }
+      };
+
+      typeFilter.onchange = function () {
+        document.querySelectorAll(".notify-table").forEach((table) => {
+          table.style.display = "none";
+        });
+
+        if (!this.value) {
+          document.querySelector(".notify-low_stock").style.display = "";
+        } else {
+          document.querySelector(".notify-" + this.value).style.display = "";
+        }
+      };
+    </script>
+  </body>
+
+  {% if messages %}
+  <div id="message-container">
+    {% for message in messages %}
+    <div class="message {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</html>

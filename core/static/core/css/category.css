@@ -1,0 +1,139 @@
+/* ===== Page Background ===== */
+body {
+    background: linear-gradient(135deg, #7ec8e3, #5b9bd5);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== Main Container ===== */
+.container {
+    max-width: 1000px;
+    margin: 40px 50px 0px 150px;
+
+    background: #f2f2f2;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* ===== Title ===== */
+.title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* ===== Buttons ===== */
+.btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+.btn.add {
+    background: #1877f2;
+}
+
+.btn.add:hover {
+    background: #0f5fd1;
+}
+
+.btn.back {
+    background: #17a2b8;
+}
+
+.btn.back:hover {
+    background: #138496;
+}
+
+/* ===== Table ===== */
+.category-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+/* Table Header */
+.category-table th {
+    background: linear-gradient(to right, #1877f2, #1da1f2);
+    color: white;
+    padding: 14px;
+    text-align: left;
+    font-size: 16px;
+}
+
+/* Table Rows */
+.category-table td {
+    padding: 14px;
+    border-bottom: 1px solid #ddd;
+    color: #444;
+    background: #ffffff;
+}
+
+/* Zebra Effect */
+.category-table tr:nth-child(even) td {
+    background: #f8f9fa;
+}
+
+/* Hover Effect */
+.category-table tr:hover td {
+    background: #eef6ff;
+    transition: 0.2s;
+}
+
+/* ===== Action Buttons ===== */
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* ===== Center Button Group ===== */
+.btn-group-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.btn1 {
+    padding: 6px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Edit Button */
+.btn-edit {
+    background: #28a745;
+}
+
+.btn-edit:hover {
+    background: #218838;
+}
+
+/* Delete Button */
+.btn-delete {
+    background: #dc3545;
+}
+
+.btn-delete:hover {
+    background: #c82333;
+}
+
+/* ===== Empty Data ===== */
+.no-data {
+    text-align: center;
+    padding: 20px;
+    color: #888;
+    font-style: italic;
+}

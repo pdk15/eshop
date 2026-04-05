@@ -1,0 +1,85 @@
+/* ===============================
+   DASHBOARD CARD
+================================*/
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+/* ===============================
+   SUMMARY GRID
+================================*/
+.summary-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+/* ===============================
+   SUMMARY CARDS
+================================*/
+.summary {
+  padding: 28px;
+  border-radius: 16px;
+  color: white;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover Animation */
+.summary:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Number */
+.summary h3 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/* Label */
+.summary p {
+  font-size: 15px;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+}
+
+/* ===============================
+   COLORS (AUTO APPLY)
+================================*/
+.summary:nth-child(1) {
+  background: linear-gradient(135deg,#6366f1,#4f46e5);
+}
+
+.summary:nth-child(2) {
+  background: linear-gradient(135deg,#10b981,#059669);
+}
+
+.summary:nth-child(3) {
+  background: linear-gradient(135deg,#f59e0b,#d97706);
+}
+
+.summary:nth-child(4) {
+  background: linear-gradient(135deg,#ef4444,#dc2626);
+}
+
+/* ===============================
+   RESPONSIVE
+================================*/
+@media (max-width: 768px) {
+
+  .card {
+    padding: 20px;
+  }
+
+  .summary h3 {
+    font-size: 28px;
+  }
+}

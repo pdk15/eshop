@@ -1,0 +1,90 @@
+{% extends "core/customer/c_base.html" %} {% block content %} {% load static %}
+
+<link
+  rel="stylesheet"
+  href="{% static 'core/css/cust_css/pay_invoice.css' %}"
+/>
+
+<div class="card">
+  <h2>Pay Invoice #SI-{{ invoice.id }}</h2>
+  <h3>Amount: ₹ {{ invoice.amount }}</h3>
+
+  <!-- PAYMENT METHOD -->
+  <label>Select Payment Method</label>
+  <select id="paymentMethod" onchange="showOptions()" required>
+    <option value="">-- Select --</option>
+    <option value="CASH">Cash</option>
+    {% comment %} <option value="UPI">UPI</option>
+    <option value="NETBANKING">Net Banking</option> {% endcomment %}
+    <option value="RAZORPAY">Razorpay (All options)</option>
+  </select>
+
+  <!-- FORM (ONLY FOR MANUAL METHODS) -->
+  <form
+    method="POST"
+    action="{% url 'process_payment' invoice.id %}"
+    id="manualForm"
+  >
+    {% csrf_token %}
+    <input type="hidden" name="payment_method" id="hiddenMethod" />
+
+    <!-- UPI SECTION -->
+    <div id="upiSection" style="display: none; margin-top: 15px">
+      <label>Enter UPI ID</label>
+      <input type="text" name="upi_id" placeholder="example@upi" />
+    </div>
+
+    <!-- NET BANKING -->
+    <div id="netSection" style="display: none; margin-top: 15px">
+      <label>Select Bank</label>
+      <select name="bank_name">
+        <option>SBI</option>
+        <option>HDFC</option>
+        <option>ICICI</option>
+        <option>Axis Bank</option>
+      </select>
+    </div>
+
+    <br />
+
+    <!-- Confirm Payment (Manual Only) -->
+    <button type="submit" class="btn pay">Confirm Payment</button>
+  </form>
+
+  <!-- RAZORPAY BUTTON -->
+  <div id="razorpaySection" style="display: none; margin-top: 20px">
+    <a href="{% url 'create_razorpay_order' invoice.id %}">
+      <button class="btn pay">Pay with Razorpay</button>
+    </a>
+  </div>
+
+  <!-- BACK -->
+  <br />
+  <a href="{% url 'customer_service_invoices' %}" class="btn back">
+    Back to Invoices
+  </a>
+</div>
+
+<script>
+  function showOptions() {
+    let method = document.getElementById("paymentMethod").value;
+
+    // hide all
+    document.getElementById("upiSection").style.display = "none";
+    document.getElementById("netSection").style.display = "none";
+    document.getElementById("razorpaySection").style.display = "none";
+
+    // set hidden value for form
+    document.getElementById("hiddenMethod").value = method;
+
+    if (method === "UPI") {
+      document.getElementById("upiSection").style.display = "block";
+    } else if (method === "NETBANKING") {
+      document.getElementById("netSection").style.display = "block";
+    } else if (method === "RAZORPAY") {
+      document.getElementById("razorpaySection").style.display = "block";
+    }
+  }
+</script>
+
+{% endblock %}

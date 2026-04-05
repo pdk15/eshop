@@ -1,0 +1,202 @@
+{% extends 'core/base.html' %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/sell_pd.css' %}" />
+
+<div class="sell-container">
+  <!-- LEFT : ADDED PRODUCTS -->
+  <div class="invoice-section">
+    <h4>Added Products</h4>
+
+    <table id="cart-table" class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Warranty</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td>{{ item.product_name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>₹{{ item.price }}</td>
+          <td>{{ item.warranty }} m</td>
+          <td>₹{{ item.total }}</td>
+          <td>
+            <a
+              href="javascript:void(0);"
+              class="btn1-cancel"
+              onclick="removeItem({{ forloop.counter0 }})"
+              title="Remove item"
+            >
+              X
+            </a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="6" class="text-muted text-center">No items added</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RIGHT : SELL FORM -->
+  <div class="sell-form">
+    <h3 class="mb-3">Sell Product</h3>
+
+    <!-- MAIN FORM -->
+    <form
+      method="POST"
+      action="{% url 'print_bill' %}"
+      onsubmit="return validateInvoice();"
+    >
+      {% csrf_token %}
+
+      <div class="form-group mb-2">
+        <label>Customer Name</label>
+        {{ form.customer_name }}
+      </div>
+
+      <div class="form-group mb-2">
+        <label>Phone Number</label>
+        {{ form.phone_no }}
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Payment Method</label>
+        {{ form.payment_method }}
+      </div>
+
+      <!-- PRODUCT ADD (JS ONLY) -->
+      <div class="form-group mb-2">
+        <label>Select Product</label>
+        <select id="id_product" class="form-control">
+          <option value="">-- Select Product --</option>
+          {% for p in products %}
+          <option value="{{ p.p_id }}">{{ p.p_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group mb-2">
+        <label>Price</label>
+        <input id="price-box" class="form-control" readonly />
+      </div>
+
+      <div class="form-group mb-2">
+        <label>Quantity</label>
+        <input id="qty" type="number" min="1" value="1" class="form-control" />
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Warranty (months)</label>
+        <input
+          id="id_warranty"
+          type="number"
+          min="0"
+          value="0"
+          class="form-control"
+        />
+      </div>
+
+      <div class="button-row mt-4">
+        <button id="printBtn" type="submit" class="btn btn-primary" disabled>
+          🖨 Print & Save
+        </button>
+
+        <button type="button" onclick="addItem()" class="btn btn-success">
+          <i class="fa fa-plus-circle"></i> Add Product
+        </button>
+
+        <a href="{% url 'shop_analysis' %}" class="btn back"> ⬅ Back </a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+  const printBtn = document.getElementById("printBtn");
+
+  function addItem() {
+    const productId = document.getElementById("id_product").value;
+    const qty = parseInt(document.getElementById("qty").value);
+    const warranty =
+      parseInt(document.getElementById("id_warranty").value) || 0;
+
+    if (!productId || qty < 1) {
+      alert("Please select product and quantity");
+      return;
+    }
+
+    fetch(
+      `/add-invoice-item/?product_id=${productId}&qty=${qty}&warranty=${warranty}`,
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          alert(data.error);
+          return;
+        }
+
+        const tbody = document.querySelector("#cart-table tbody");
+        tbody.innerHTML = "";
+
+        data.items.forEach((item, index) => {
+          tbody.innerHTML += `
+            <tr>
+              <td>${item.name}</td>
+              <td>${item.quantity}</td>
+              <td>₹${item.price}</td>
+              <td>${item.warranty} m</td>
+              <td>₹${item.total}</td>
+              <td>
+                <button class="btn btn-sm btn-danger" onclick="removeItem(${index})">❌</button>
+              </td>
+            </tr>`;
+        });
+
+        printBtn.disabled = data.items.length === 0;
+      });
+  }
+
+  function removeItem(index) {
+    fetch(`/remove-invoice-item/${index}/`).then(() => location.reload());
+  }
+
+  document.getElementById("id_product").addEventListener("change", function () {
+    if (!this.value) {
+      document.getElementById("price-box").value = "";
+      return;
+    }
+
+    fetch(`/api/product-price/?product_id=${this.value}`)
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById("price-box").value = data.price;
+      });
+  });
+
+  function validateInvoice() {
+    const rows = document.querySelectorAll("#cart-table tbody tr");
+    if (rows.length === 0) {
+      alert("Add at least one product");
+      return false;
+    }
+    return true;
+  }
+
+  // Enable print on reload if items exist
+  document.addEventListener("DOMContentLoaded", () => {
+    const rows = document.querySelectorAll("#cart-table tbody tr");
+    printBtn.disabled = rows.length === 0;
+  });
+</script>
+
+{% endblock %}

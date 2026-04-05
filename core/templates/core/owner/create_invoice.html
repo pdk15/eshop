@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %} {% load static %} {% block content %}
+
+<h2>Create Invoice</h2>
+
+<form method="POST">
+  {% csrf_token %}
+
+  <!-- Customer -->
+  <label>Customer</label>
+  <select name="customer" required>
+    {% for c in customers %}
+    <option value="{{ c.id }}">{{ c.u_name }}</option>
+    {% endfor %}
+  </select>
+
+  <!-- Payment -->
+  <label>Payment Method</label>
+  <select name="payment_method">
+    <option value="CASH">Cash</option>
+    <option value="UPI">UPI</option>
+    <option value="CARD">Card</option>
+  </select>
+
+  <hr />
+
+  <table id="invoice-table">
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Qty</th>
+      <th>Action</th>
+    </tr>
+
+    <tr>
+      <td>
+        <select name="product" onchange="setPrice(this)">
+          {% for p in products %}
+          <option value="{{ p.id }}" data-price="{{ p.price }}">
+            {{ p.p_name }}
+          </option>
+          {% endfor %}
+        </select>
+      </td>
+      <td><input type="text" name="price" readonly /></td>
+      <td><input type="number" name="quantity" value="1" /></td>
+      <td>
+        <button type="button" onclick="addRow()">+</button>
+      </td>
+    </tr>
+  </table>
+
+  <br />
+
+  <button onclick="window.print()">Print</button>
+</form>
+{% endblock %}

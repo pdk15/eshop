@@ -1,0 +1,65 @@
+{% extends 'core/base.html' %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/service_list.css' %}" />
+
+<div class="product-container">
+  <h2 class="title">Services</h2>
+  <div class="action-bar">
+    <a href="{% url 'ser_add' %}" class="btn btn-primary"
+      ><b><i class="fa fa-plus-circle"></i> Add Service</b></a
+    >
+    <a href="{% url 'service_requests' %}" class="btn btn-secondary"
+      ><i class="fa fa-cog"></i> Service Requests
+    </a>
+    <a href="{% url 'shop_analysis' %}" class="btn btn-third"><b>⬅ Back</b></a>
+  </div>
+  <table class="category-table">
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Status</th>
+      <th>Cost</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+
+    {% for s in services %}
+    <tr>
+      <td>{{ s.s_name }}</td>
+      <td>{{ s.category }}</td>
+      <td>{{ s.status }}</td>
+      <td>{{ s.cost }}</td>
+      <td>
+        <span class="more-details" onclick="toggleDetails({{ s.s_id }})">
+          More details
+        </span>
+      </td>
+      <td class="actions">
+        <a href="{% url 'ser_update' s.pk %}" class="btn1 btn-edit">Edit</a>
+        <a href="{% url 'ser_delete' s.pk %}" class="btn1 btn-delete">Delete</a>
+      </td>
+    </tr>
+
+    <!-- Hidden details row -->
+    <tr id="details-{{ s.s_id }}" class="details-row" style="display: none">
+      <td colspan="6">
+        <strong>Description:</strong><br />
+        {{ s.description }}
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="6">No products available.</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <script>
+    function toggleDetails(id) {
+      var row = document.getElementById("details-" + id);
+      row.style.display = row.style.display === "none" ? "table-row" : "none";
+    }
+  </script>
+</div>
+
+{% endblock %}

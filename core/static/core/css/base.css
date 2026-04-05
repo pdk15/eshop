@@ -1,0 +1,323 @@
+     
+body {
+        display: flex;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      .side-nav {
+        width: 220px;
+        background: #2c3e50;
+        color: white;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+          position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+      }
+      .side-nav h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 22px;
+      }
+      .side-nav a {
+        color: white;
+        text-decoration: none;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: 0.3s;
+        border-left: 4px solid transparent;
+      }
+      .side-nav a.active,
+      .side-nav a:hover {
+        background-color: #1abc9c;
+        border-left: 4px solid #16a085;
+        border-radius: 10px;
+        margin-top: 5px;
+      }
+      .main-content {
+        margin-left: 220px;
+        padding: 20px;
+        width: 100%;
+      }
+      img {
+        min-width: 10px;
+        min-height: 10px;
+        border: 1px;
+        margin-left: 10px;
+        margin-right: 10px;
+        border-radius: 15px;
+      }
+
+      #message-container {
+        position: fixed;
+        top: 20px;
+        right: 35%;
+        z-index: 1000;
+      }
+
+      .message {
+        padding: 12px 20px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        color: #fff;
+        font-weight: bold;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        animation: slideIn 0.5s, fadeOut 0.5s 3s forwards;
+      }
+
+      /* Message colors */
+      .message.success {
+        background-color: #2ecc71;
+      }
+      .message.error {
+        background-color: #e74c3c;
+      }
+      .message.warning {
+        background-color: #f39c12;
+      }
+      .message.info {
+        background-color: #3498db;
+      }
+
+      /* Animations */
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeOut {
+        to {
+          opacity: 0;
+        }
+      }
+
+      .upper-nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 12px 20px;
+        border-radius: 5px;
+        color: #020101; 
+        position: absolute;
+        right: 100px;
+        top: 10px;
+        box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
+
+      }
+
+      /* Welcome text */
+      .welcome {
+        font-size: 16px;
+        margin-right: 20px;
+      }
+
+      /* Profile container */
+      .profile-menu {
+        position: relative;
+        cursor: pointer;
+      }
+
+      /* Profile name */
+      .profile-name {
+        font-weight: 600;
+      }
+
+      /* Dropdown */
+      .dropdown {
+        position: absolute;
+        top: 40px;
+        background: #fff;
+        color: #333;
+        min-width: 170px;
+        border-radius: 6px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+        /* IMPORTANT FIX */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+
+      /* Dropdown items */
+      .dropdown a,
+      .dropdown .role {
+        display: block;
+        padding: 10px 15px;
+        font-size: 14px;
+        text-decoration: none;
+        color: #333;
+
+      }
+
+      /* Hover effect */
+      .dropdown a:hover {
+        border-radius: 4px;
+        background: #f1f2f6;
+        transform: translateY(-4px);
+        box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
+
+      }
+
+      /* Role style */
+      .dropdown .role {
+        font-weight: bold;
+        background: #f9f9f9;
+        cursor: default;
+      }
+
+      /* Logout color */
+      .dropdown .logout {
+        color: #e74c3c;
+      }
+
+      /* ✅ SHOW DROPDOWN */
+      .profile-menu:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+  .app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 60px; /* FIXED SIZE */
+  background: linear-gradient(to right, #7ee8fa );
+
+  display: flex;
+  align-items: center;  
+  justify-content: space-between;
+
+  padding: 35px 25px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.header-left .shop-title {
+  margin: 0;
+  font-weight: 700;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+
+.calendar-icon{
+  position: absolute;
+  top: 25px;
+  left: 60%;
+}
+
+.calendar-icon a{
+  color: white;
+  border-radius: 5px;
+  background-color: #16a085;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+.calendar-icon i{
+  color: white;
+}
+.notify-icon{
+  position: absolute;
+  top: 25px;
+  left: 70%;
+}
+
+
+.notify-icon a{
+  color: white;
+  border-radius: 5px;
+  background-color: #16a085;
+  padding: 10px 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+.notify-icon i{
+  color: white;
+}
+
+/* Overlay */
+.notify-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Center box */
+.notify-center {
+  background: #fff;
+  width: 80%;
+  max-width: 900px;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Header */
+.notify-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notify-header button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Filters */
+.notify-filters {
+  margin: 10px 0;
+}
+
+/* Table */
+.notify-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.notify-table th,
+.notify-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.notify-table tr:hover {
+  background: #f5f7fa;
+}

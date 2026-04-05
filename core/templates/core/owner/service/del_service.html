@@ -1,0 +1,13 @@
+{% extends "core/base.html" %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'core/css/delete_conf.css' %}" />
+
+<div class="manage-container">
+  <h2>Delete Service</h2>
+  <p>Are you sure you want to delete "{{ service.s_name }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+    <a href="{% url 'ser_list' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

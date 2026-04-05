@@ -1,0 +1,123 @@
+/* =========================
+   SERVICE INVOICE DESIGN
+========================= */
+
+body {
+    background: #f4f6f9;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Invoice Card */
+.invoice-card {
+    width: 700px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 35px 45px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    border-top: 6px solid #2c7be5;
+}
+
+/* Title */
+.invoice-card h2 {
+    text-align: center;
+    color: #2c7be5;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+/* Info rows */
+.invoice-card p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #333;
+}
+
+/* Labels */
+.invoice-card b {
+    color: #111;
+    display: inline-block;
+    width: 140px;
+}
+
+/* Divider */
+.invoice-card hr {
+    margin: 25px 0;
+    border: none;
+    height: 1px;
+    background: #e5e5e5;
+}
+
+/* Amount Highlight */
+.invoice-card p:nth-last-child(2) {
+    font-size: 20px;
+    font-weight: bold;
+    color: #28a745;
+}
+
+/* Status Badge */
+.status-paid,
+.status-pending {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.status-paid {
+    background: #e6f7ee;
+    color: #28a745;
+}
+
+.status-pending {
+    background: #ffeaea;
+    color: #dc3545;
+}
+
+/* Print Button */
+.print-btn {
+    display: block;
+    width: 150px;
+    margin: 30px auto 0;
+    padding: 10px;
+    background: #2c7be5;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.print-btn:hover {
+    background: #1a68d1;
+}
+
+/* PRINT MODE */
+@media print {
+    body {
+        background: white;
+    }
+
+    .invoice-card {
+        box-shadow: none;
+        border: none;
+        margin: 0;
+        width: 100%;
+    }
+
+    .print-btn {
+        display: none;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .invoice-card {
+        width: 95%;
+        padding: 25px;
+    }
+
+    .invoice-card b {
+        width: 120px;
+    }
+}

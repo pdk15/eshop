@@ -1,0 +1,39 @@
+{% extends "core/customer/c_base.html" %} {% load static %} {% block title %}My
+Products{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/cust_css/c_prod.css' %}" />
+
+<div class="card">
+  <div class="page-header">
+    <h2>Purchased Products</h2>
+  </div>
+
+  <table class="table">
+    <tr>
+      <th>Product</th>
+      <th>Date</th>
+      <th>Warranty</th>
+      <th>Action</th>
+    </tr>
+
+    {% for p in purchases %}
+    <tr>
+      <td>{{ p.product.name }}</td>
+      <td>{{ p.invoice.issued_date }}</td>
+      <td class="warranty">{{ p.warranty_end }}</td>
+      <td>
+        <a href="{% url 'request_service' p.id %}" class="btn">
+          Request Service
+        </a>
+      </td>
+    </tr>
+
+    {% empty %}
+    <tr>
+      <td colspan="4" style="text-align: center">No Products yet.</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock %}

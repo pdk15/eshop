@@ -1,0 +1,68 @@
+{% extends "core/base.html" %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/update_serv_status.css' %}" />
+
+<div class="status-container">
+  <div class="form-card">
+    <h2 class="page-title">Update Service Status</h2>
+
+    <form method="POST">
+      {% csrf_token %}
+
+      <div class="info-box">
+        <p><strong>Customer:</strong> {{ service.customer.u_name }}</p>
+        <p><strong>Problem:</strong> {{ service.problem }}</p>
+      </div>
+
+      <label for="status">Service Status</label>
+
+      <select name="status" id="status" required>
+        <option
+          value="PENDING"
+          {%
+          if
+          service.status=""
+          ="PENDING"
+          %}selected{%
+          endif
+          %}
+        >
+          Pending
+        </option>
+
+        <option
+          value="POSTPONED"
+          {%
+          if
+          service.status=""
+          ="POSTPONED"
+          %}selected{%
+          endif
+          %}
+        >
+          Postponed
+        </option>
+
+        <option
+          value="COMPLETED"
+          {%
+          if
+          service.status=""
+          ="COMPLETED"
+          %}selected{%
+          endif
+          %}
+        >
+          Completed
+        </option>
+      </select>
+
+      <div class="button-row">
+        <button type="submit" class="btn save"> <i class="fa fa-refresh"></i> Update Status</button>
+        <a href="{% url 'service_requests' %}" class="btn back"> ⬅ Back</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,173 @@
+{% extends "core/base.html" %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/serv_req.css' %}" />
+
+<div class="container">
+  <h2 class="page-title">Service Requests</h2>
+
+  <!-- 🔹 FILTER BAR -->
+
+  <form method="get" class="filter-bar">
+    <input
+      type="text"
+      name="search"
+      placeholder="Search by customer name..."
+      value="{{ request.GET.search }}"
+      class="search-box"
+    />
+
+    <select name="status">
+      <option value="">All Status</option>
+      <option value="PENDING">Pending</option>
+      <option value="ACCEPTED">Accepted</option>
+      <option value="COMPLETED">Completed</option>
+    </select>
+
+    <select name="type">
+      <option value="">All Types</option>
+      <option value="WARRANTY">Warranty</option>
+      <option value="PAID">Paid</option>
+    </select>
+
+    <button type="submit" class="btn1"><i class="fas fa-filter"></i>
+Filter</button>
+  </form>
+
+  <!-- 🔹 DELETE FORM -->
+
+  <form method="post" action="{% url 'delete_multiple_requests' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn1 delete-btn"><i class="fa fa-trash"> </i> Delete Selected</button>
+    
+    <a href="{% url 'ser_list' %}" class="btn1 back-btn"> ⬅ Back </a>
+
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Select</th>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Service</th>
+            <th>Problem</th>
+            <th>Service Type</th>
+            <th>Status</th>
+            <th>Payment</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for r in requests %}
+          <tr>
+            <!-- 🔹 CHECKBOX -->
+            <td>
+              <input
+                type="checkbox"
+                name="selected_requests"
+                value="{{ r.id }}"
+              />
+            </td>
+
+            <!-- CUSTOMER -->
+            <td>{{ r.customer.u_name|default:"N/A" }}</td>
+
+            <!-- PHONE -->
+            <td>{{ r.customer.phone_no|default:"-" }}</td>
+
+            <!-- PRODUCT / SERVICE -->
+            <td>{{ r.service.s_name|default:"Manual Request" }}</td>
+
+            <!-- PROBLEM -->
+            <td>{{ r.problem|default:"Not provided" }}</td>
+
+            <!-- SERVICE TYPE -->
+            <td>
+              {% if r.service_type == "WARRANTY" %}
+              <span class="badge warranty">Warranty</span>
+              {% else %}
+              <span class="badge paid">Paid</span>
+              {% endif %}
+            </td>
+
+            <!-- STATUS -->
+            <td>
+              <span class="status {{ r.status|lower }}"> {{ r.status }} </span>
+            </td>
+
+            <!-- 🔹 FIXED PAYMENT -->
+            <td>
+              {% if r.serviceinvoice and r.serviceinvoice.is_paid %}
+              <span class="paid">Paid</span>
+              {% else %}
+              <span class="pending">Pending</span>
+              {% endif %}
+            </td>
+
+            <!-- DATE -->
+            <td>{{ r.created_at|date:"d M Y"|default:"--" }}</td>
+
+            <!-- ACTION -->
+            <td>
+              <div class="action-buttons">
+                {% if r.status == "PENDING" %}
+                <a href="{% url 'accept_service' r.pk %}" class="btn1 accept">
+                  Accept
+                </a>
+                {% endif %} {% if r.status != "COMPLETED" %}
+                <a href="{% url 'update_status' r.pk %}" class="btn1 update">
+                  Update
+                </a>
+                {% endif %} {% if r.status == "COMPLETED" %}
+                <a
+                  href="{% url 'generate_service_invoice' r.pk %}"
+                  class="btn1 invoice"
+                >
+                  Invoice
+                </a>
+
+                <!-- 🔹 HIDE BUTTON -->
+                {% comment %}
+                <a href="{% url 'archive_service' r.pk %}" class="btn1 archive">
+                  Hide
+                </a>
+                {% endcomment %} {% endif %}
+              </div>
+            </td>
+          </tr>
+
+          {% empty %}
+          <tr>
+            <td colspan="10" class="empty-row">
+              No Service Requests Available
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>
+
+<!-- 🔹 DOUBLE CLICK SELECT SCRIPT -->
+
+<script>
+  document.querySelectorAll("tbody tr").forEach((row) => {
+    row.addEventListener("dblclick", () => {
+      let checkbox = row.querySelector("input[type='checkbox']");
+      checkbox.checked = !checkbox.checked;
+      row.classList.toggle("selected-row");
+    });
+  });
+
+  document.querySelectorAll("tbody tr").forEach((row) => {
+    row.addEventListener("dblclick", () => {
+      let checkbox = row.querySelector("input[type='checkbox']");
+      checkbox.checked = !checkbox.checked;
+      row.classList.toggle("selected-row");
+    });
+  });
+</script>
+
+{% endblock %}

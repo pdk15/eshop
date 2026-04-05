@@ -1,0 +1,107 @@
+
+/* ===== Reset some default browser styles ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Body Styling ===== */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ===== Dashboard Wrapper ===== */
+.dashboard-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  width: 250px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+}
+
+/* Sidebar nav links */
+.sidebar .dash-nav a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  font-size: 15px;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.sidebar .dash-nav a i {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.sidebar .dash-nav a:hover {
+  background-color: #0056b3;
+}
+
+/* Sidebar spacing between items */
+.sidebar .dash-nav a + a {
+  margin-top: 15px;
+}
+
+/* ===== Main Content ===== */
+.main-content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+/* ===== Titles ===== */
+.dash-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+/* ===== Buttons (Optional Global Reusable) ===== */
+/* .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+} */
+
+/* ====== Messages ====== */
+ul.messages {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+ul.messages li {
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+ul.messages li.success { background: #e0f7e9; color: #2e7d32; }
+ul.messages li.error   { background: #fdecea; color: #c0392b; }
+
+

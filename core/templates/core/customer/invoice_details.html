@@ -1,0 +1,50 @@
+{% extends "core/customer/c_base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="invoice-box">
+
+  <h2>Invoice #{{ invoice.invoice_number }}</h2>
+
+  <p><strong>Date:</strong> {{ invoice.issued_date }}</p>
+  <p><strong>Customer:</strong> {{ invoice.customer.name }}</p>
+
+  <hr>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Warranty</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td>{{ item.product.p_name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>₹ {{ item.price }}</td>
+        <td>{{ item.warranty }} months</td>
+        <td>₹ {{ item.total_price }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5">No items found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <hr>
+
+  <h3>Grand Total: ₹ {{ invoice.total_amount }}</h3>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,209 @@
+/* =================================================
+   GLOBAL RESET
+=================================================*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+  min-height: 100vh;
+}
+
+/* =================================================
+   MAIN LAYOUT
+=================================================*/
+.container {
+  display: flex;
+}
+
+/* =================================================
+   SIDEBAR
+=================================================*/
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: #2c3e50;
+  color: white;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding-top: 25px;
+  box-shadow: 3px 0 10px rgba(0,0,0,0.15);
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  padding: 18px 20px;
+  display: flex;
+  gap: 10px;
+  transition: 0.3s;
+  font-size: 15px;
+  border-left: 4px solid transparent;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: #1abc9c;
+  border-left: 4px solid #16a085;
+  border-radius: 10px;
+  margin: 8px;
+}
+
+/* =================================================
+   MAIN CONTENT
+=================================================*/
+.main {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  padding: 25px;
+}
+
+/* =================================================
+   TOP HEADER
+=================================================*/
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 18px 22px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+}
+
+.top-header h2 {
+  color: #2c3e50;
+}
+
+.profile-box {
+  background: #3b82f6;
+  padding: 8px 16px;
+  border-radius: 25px;
+  color: white;
+  font-weight: 500;
+  
+}
+
+/* =================================================
+   CARD
+=================================================*/
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+/* =================================================
+   TABLE DESIGN
+=================================================*/
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table th {
+  background: #3b82f6;
+  color: white;
+  padding: 14px;
+  text-align: left;
+}
+
+.table td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.table tr:hover {
+  background: #f4f9ff;
+}
+
+/* =================================================
+   BUTTONS
+=================================================*/
+.btn {
+  padding: 7px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  color: white;
+  transition: 0.3s;
+}
+
+.btn.view { background:#3b82f6; }
+.btn.edit { background:#10b981; }
+.btn.delete { background:#ef4444; }
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+/* =================================================
+   STATUS BADGES
+=================================================*/
+.badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge.pending { background:#f59e0b; color:white;}
+.badge.completed { background:#10b981; color:white;}
+.badge.postponed { background:#ef4444; color:white;}
+
+/* =================================================
+   DJANGO MESSAGE ALERTS
+=================================================*/
+.message-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%); /* 🔥 center horizontally */
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.alert {
+  background: #28a745;
+  color: white;
+  padding: 14px 40px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 250px;
+}
+
+
+/* =================================================
+   RESPONSIVE
+=================================================*/
+@media(max-width:900px){
+
+  .sidebar{
+    width:200px;
+  }
+
+  .main{
+    margin-left:200px;
+    width:calc(100% - 200px);
+  }
+}

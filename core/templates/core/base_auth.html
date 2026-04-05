@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Eshop</title>
+
+    {% load static %}
+
+    <!-- Font Awesome (CSS ONLY – recommended) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}" />
+
+    {% block extra_head %}{% endblock %}
+
+    <style>
+      #message-container {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+      }
+
+      .message {
+        padding: 12px 20px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        color: #fff;
+        font-weight: bold;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        animation:
+          slideIn 0.5s,
+          fadeOut 0.5s 3s forwards;
+      }
+
+      .message.success {
+        background-color: #2ecc71;
+      }
+      .message.error {
+        background-color: #e74c3c;
+      }
+      .message.warning {
+        background-color: #f39c12;
+      }
+      .message.info {
+        background-color: #3498db;
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateY(-20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeOut {
+        to {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    {% block content %}{% endblock %} {% if messages %}
+    <div id="message-container">
+      {% for message in messages %}
+      <div class="message {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </body>
+</html>

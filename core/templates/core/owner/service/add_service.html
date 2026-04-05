@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'core/css/update.css' %}" />
+
+<div class="add-product-form">
+  <h2>Add Service</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    <p>{{ form.s_name.label_tag }} {{ form.s_name }}</p>
+
+    <p>{{ form.category.label_tag }} {{ form.category }}</p>
+
+    <p>{{ form.cost.label_tag }} {{ form.cost }}</p>
+
+    <p>{{ form.status.label_tag }} {{ form.status }}</p>
+
+    <div class="form-group">
+      {{ form.description.label_tag }} {{ form.description }}
+
+      <!-- More details link -->
+      <span
+        class="more-details"
+        onclick="toggleDetails()"
+        style="cursor: pointer; color: #3498db; font-weight: bold"
+      >
+        More details
+      </span>
+
+      <!-- Hidden description box (like table list) -->
+      <div
+        id="details-box"
+        class="details-row"
+        style="display: none; margin-top: 10px"
+      >
+        <strong>Description:</strong><br />
+        {{ form.instance.description }}
+      </div>
+    </div>
+
+    <script>
+      function toggleDetails() {
+        var row = document.getElementById("details-box");
+        if (row.style.display === "none") {
+          row.style.display = "block";
+        } else {
+          row.style.display = "none";
+        }
+      }
+    </script>
+
+    <div class="button-row">
+      <button type="submit" class="btn save-btn">Save</button>
+      <a href="{% url 'ser_list' %}" class="btn cancel-btn">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

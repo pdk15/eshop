@@ -1,0 +1,46 @@
+{% extends "core/base.html" %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/calendar.css' %}" />
+
+<div class="calendar-page">
+  <div class="calendar-header">
+    <h2>📅 Service Schedule Calendar</h2>
+  </div>
+<div class="stock-card">
+
+    <h2 class="card-title">Service Calendar</h2>
+
+    <div id="calendar"></div>
+
+</div>
+
+
+<!-- FullCalendar CSS -->
+<link
+  href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css"
+  rel="stylesheet"
+/>
+
+<!-- FullCalendar JS -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var calendarEl = document.getElementById("calendar");
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: "dayGridMonth",
+      events: "/service-calendar/",
+      height: 650,
+      headerToolbar: {
+        left: "prev,next today",
+        center: "title",
+        right: "dayGridMonth,timeGridWeek,timeGridDay",
+      },
+    });
+
+    calendar.render();
+  });
+</script>
+
+{% endblock %}

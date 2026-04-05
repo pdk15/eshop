@@ -1,0 +1,55 @@
+{% extends "core/customer/c_base.html" %}
+{% load static %}
+
+{% block title %}
+My Invoices
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{% static 'core/css/cust_css/invoice_detail.css' %}">
+
+<div class="card">
+
+  <div class="page-header">
+    <h2>My Invoices</h2>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Invoice No</th>
+        <th>Date</th>
+        <th>Total</th>
+        <th>View</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for inv in invoices %}
+      <tr>
+        <td>#{{ inv.id }}</td>
+        <td>{{ inv.issued_date }}</td>
+        <td>₹ {{ inv.total_amount }}</td>
+        <td>
+          <a href="{% url 'invoice_detail' inv.id %}" class="btn">
+            View
+          </a>
+        </td>
+      </tr>
+
+      {% empty %}
+      <tr>
+        <td colspan="4" style="text-align:center;">
+          No invoices available.
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+
+</div>
+
+{% endblock %}

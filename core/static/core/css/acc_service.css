@@ -1,0 +1,146 @@
+/* ===== General Container ===== */
+.container {
+  max-width: 500px;
+  margin: 50px auto;
+  font-family: 'Poppins', sans-serif;
+  color: #1f2937;
+}
+
+/* ===== Page Title ===== */
+.page-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #111827;
+}
+
+/* ===== Form Card ===== */
+.form-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 30px 25px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== Labels ===== */
+.form-card label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+/* ===== Inputs & Selects ===== */
+.form-card input,
+.form-card select {
+  width: 100%;
+  padding: 12px 15px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.form-card input:focus,
+.form-card select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.25);
+  background: #fff;
+}
+
+/* ===== Time Select Flex ===== */
+.time-select {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.time-select input {
+  flex: 1;
+}
+
+.time-select select {
+  width: 100px;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+
+/* ===== Buttons ===== */
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+}
+
+/* Accept Button */
+.btn.save {
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.35);
+}
+
+.btn.save:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+}
+
+/* Back Button */
+.btn.back {
+  background: #17a2b8;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.btn.back:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 576px) {
+  .form-card {
+    padding: 20px 15px;
+  }
+
+  .time-select {
+    flex-direction: column;
+  }
+
+  .time-select select {
+    width: 100%;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

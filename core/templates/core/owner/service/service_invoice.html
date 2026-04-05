@@ -1,0 +1,110 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/invoice_service.css' %}" />
+
+<div id="print-area" class="invoice-wrapper">
+
+  <h2 class="title">SERVICE INVOICE</h2>
+
+  <!-- SHOP INFO -->
+  <div class="shop">
+    <h3>My Shop Name</h3>
+    <p><b>Owner:</b> {{ invoice.shop_owner.sw_uname }}</p>
+  </div>
+
+  <hr />
+
+  <!-- DETAILS -->
+  <div class="invoice-grid">
+
+    <!-- CUSTOMER -->
+    <div>
+      <h4>Customer Details</h4>
+      <p><b>Name:</b> {{ invoice.customer.u_name|default:"N/A" }}</p>
+      <p><b>Phone:</b> {{ invoice.customer.phone_no|default:"-" }}</p>
+    </div>
+
+    <!-- INVOICE -->
+    <div>
+      <h4>Invoice Details</h4>
+      <p><b>Date:</b> {{ invoice.invoice_date|date:"d M Y" }}</p>
+      <p><b>Invoice #:</b> {{ invoice.id }}</p>
+    </div>
+
+  </div>
+
+  <!-- TABLE -->
+  <table class="invoice-table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Service</th>
+        <th>Amount (₹)</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+
+        <!-- PRODUCT -->
+        <td>
+          {% if invoice.service_request.product_invoice %}
+            {{ invoice.service_request.product_invoice.product.p_name }}
+          {% else %}
+            Manual Service
+          {% endif %}
+        </td>
+
+        <!-- SERVICE -->
+        <td>
+          {{ invoice.service_request.service.s_name|default:"-" }}
+        </td>
+
+        <!-- AMOUNT -->
+        <td>₹{{ invoice.amount }}</td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- TOTAL -->
+  <div class="total">
+    <h3>Total: ₹{{ invoice.amount }}</h3>
+  </div>
+
+  <p class="thanks">Thank you for choosing our service!</p>
+
+  <!-- ACTION BUTTONS -->
+  <div class="invoice-buttons no-print">
+
+    <!-- PRINT -->
+    <button onclick="window.print()" class="btn print">
+      <i class="fa fa-print"></i> Print
+    </button>
+
+    <!-- DOWNLOAD PDF -->
+    <a href="{% url 'download_service_invoice_pdf' invoice.id %}" class="btn download">
+      <i class="fa fa-download"></i> Download
+    </a>
+
+    <!-- WHATSAPP -->
+    <a 
+      target="_blank"
+      href="https://wa.me/91{{ invoice.customer.phone_no|cut:'+'|cut:' ' }}?text=Your%20service%20invoice%20is%20ready.%20Invoice%20No:%20{{ invoice.id }}"
+      class="btn whatsapp">
+      <i class="fa fa-whatsapp"></i> WhatsApp
+    </a>
+
+    <!-- BACK -->
+    <a href="{% url 'service_requests' %}" class="btn back">
+      ⬅ Back
+    </a>
+
+  </div>
+
+</div>
+
+{% endblock %}

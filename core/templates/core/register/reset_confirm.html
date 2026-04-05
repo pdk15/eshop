@@ -1,0 +1,33 @@
+{% extends 'core/base_auth.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'core/css/auth.css' %}" />
+
+<div class="login-container">
+  <h1>Reset Password</h1>
+
+  <form method="post">
+    {% csrf_token %}
+
+    <label>New Password</label>
+    <div class="password-box">
+      <input type="password" name="password" id="password" required />
+      <span class="toggle-password">
+        <i class="fa-solid fa-eye" id="togglePassword"></i>
+      </span>
+    </div>
+
+    <button type="submit">Reset Password</button>
+  </form>
+</div>
+
+<script>
+  const toggle = document.getElementById("togglePassword");
+  const pwd = document.getElementById("password");
+
+  toggle.onclick = () => {
+    pwd.type = pwd.type === "password" ? "text" : "password";
+    toggle.classList.toggle("fa-eye");
+    toggle.classList.toggle("fa-eye-slash");
+  };
+</script>
+
+{% endblock %}

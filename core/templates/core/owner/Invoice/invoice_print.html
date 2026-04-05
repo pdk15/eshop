@@ -1,0 +1,86 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Invoice #{{ invoice.In_id }}</title>
+    <link rel="stylesheet" href="{% static 'core/css/invoice.css' %}" />
+  </head>
+
+  <body>
+    <div id="invoice-print">
+      <!-- Header -->
+      <h2 style="text-align: center">My Shop Name</h2>
+      <p style="text-align: center">Owner: Pranav Khanolkar</p>
+      <hr />
+
+      <!-- Customer & Invoice Info -->
+      <div
+        class="invoice-info"
+        style="display: flex; justify-content: space-between"
+      >
+        <div>
+          <h4>Customer Details</h4>
+          <p><b>Name:</b> {{ invoice.customer.u_name }}</p>
+          <p><b>Phone:</b> {{ invoice.customer.phone_no }}</p>
+        </div>
+        <div>
+          <h4>Invoice Details</h4>
+          <p><b>Date:</b> {{ invoice.issued_date|date:"d M Y" }}</p>
+          <p><b>Invoice #:</b> {{ invoice.In_id }}</p>
+          <p><b>Payment:</b> {{ invoice.payment_method }}</p>
+        </div>
+      </div>
+
+      <!-- Products Table -->
+      <table
+        border="1"
+        width="100%"
+        cellspacing="0"
+        cellpadding="6"
+        style="margin-top: 15px"
+      >
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price (₹)</th>
+            <th>Total (₹)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in invoice.items.all %}
+          <tr>
+            <td>{{ item.product.p_name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>₹{{ item.price|floatformat:2 }}</td>
+            <td>₹{{ item.total|floatformat:2 }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <!-- Totals -->
+      <div class="totals" style="margin-top: 15px; text-align: right">
+        <p><b>Tax (18%):</b> ₹{{ invoice.tax_amount|floatformat:2 }}</p>
+        <h3><b>Grand Total:</b> ₹{{ invoice.total_amount|floatformat:2 }}</h3>
+      </div>
+
+      <!-- Footer / QR Code -->
+      <div class="qr-code" style="text-align: center; margin-top: 20px">
+        <img src="{% static 'image/QR_eshop1.jpeg' %}" width="120" />
+        <p>Thank you for your purchase!</p>
+      </div>
+    </div>
+
+    <!-- Auto print & redirect -->
+    <script>
+      window.onload = function () {
+        window.print();
+      };
+      window.onafterprint = function () {
+        window.location.href = "{% url 'invoice_list' %}";
+      };
+    </script>
+  </body>
+</html>

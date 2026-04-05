@@ -1,0 +1,199 @@
+/* ===============================
+   GLOBAL PAGE STYLE
+================================ */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===============================
+   LOGIN CONTAINER
+================================ */
+.login-container {
+  width: 440px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-container:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* ===============================
+   HEADER
+================================ */
+.login-container h1 {
+  margin: 0;
+  padding: 20px;
+  background: #4a90e2;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* ===============================
+   FORM
+================================ */
+.login-container form {
+  padding: 30px;
+}
+
+/* ===============================
+   LABELS
+================================ */
+.login-container label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ===============================
+   INPUTS
+================================ */
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 11px 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-container input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* ===============================
+   PASSWORD FIELD WITH EYE
+================================ */
+.password-box {
+  position: relative;
+  width: 100%;
+}
+
+.password-box input {
+  width: 100%;
+  padding: 11px 45px 11px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 14px;
+  top: 35%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+  font-size: 16px;
+  z-index: 10;
+}
+
+.togglePassword:hover {
+  color: #4a90e2;
+}
+
+/* ===============================
+   ROLE SELECT
+================================ */
+#role {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1.5px solid #d1d5db;
+  background-color: #f9fafb;
+  font-size: 15px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+#role:hover {
+  border-color: #6366f1;
+}
+
+#role:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* ===============================
+   BUTTON
+================================ */
+.login-container button {
+  width: 100%;
+  padding: 12px;
+  background: #4a90e2;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background: #357abd;
+}
+
+/* ===============================
+   REGISTER LINK
+================================ */
+.register-link {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.register-link a {
+  color: #4a90e2;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* ===============================
+   ANIMATION
+================================ */
+#shop-owner-form,
+#customer-form {
+  animation: fadeSlide 0.3s ease-in-out;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 480px) {
+  .login-container {
+    width: 90%;
+  }
+}

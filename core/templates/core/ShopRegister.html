@@ -1,0 +1,116 @@
+{% extends 'core/base_auth.html' %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/register.css' %}" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+<div class="register-container">
+  <h1>Register</h1>
+
+  <form method="post" autocomplete="off">
+    {% csrf_token %}
+
+    <label>Register As</label>
+    <select name="role" id="role" onchange="toggleForm()" required>
+      <option value="customer">Customer</option>
+      <option value="shop_owner">Shop Owner</option>
+    </select>
+
+    <!-- SHOP OWNER FORM -->
+    <div id="shop-owner-form" style="display: none">
+      <label>Username</label>
+      <input type="text" name="sw_uname" />
+
+      <label>Email</label>
+      <input type="email" name="email" />
+
+      <label>Password</label>
+      <div class="password-box">
+        <input type="password" name="password" class="password-input" />
+        <i class="fa-solid fa-eye togglePassword"></i>
+      </div>
+
+      <label>Phone Number</label>
+      <input type="text" name="phone_no" />
+
+      <label>Address</label>
+      <input type="text" name="address" />
+    </div>
+
+    <!-- CUSTOMER FORM -->
+    <div id="customer-form" style="display: none">
+      <label>Full Name</label>
+      <input type="text" name="cu_name" />
+      <label>Username</label>
+      <input type="text" name="c_username" required />
+
+      <label>Email</label>
+      <input type="email" name="c_email" />
+
+      <label>Password</label>
+      <div class="password-box">
+        <input type="password" name="c_password" class="password-input" />
+        <i class="fa-solid fa-eye togglePassword"></i>
+      </div>
+
+      <label>Phone Number</label>
+      <input type="text" name="c_phone" />
+
+      <label>Address</label>
+      <input type="text" name="c_address" />
+    </div>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <p class="register-link">
+    Already have an account?
+    <a href="{% url 'login' %}">Login here</a>
+  </p>
+</div>
+<script>
+  function toggleForm() {
+    const role = document.getElementById("role").value;
+
+    const shopForm = document.getElementById("shop-owner-form");
+    const custForm = document.getElementById("customer-form");
+
+    const shopInputs = shopForm.querySelectorAll("input");
+    const custInputs = custForm.querySelectorAll("input");
+
+    if (role === "shop_owner") {
+      shopForm.style.display = "block";
+      custForm.style.display = "none";
+
+      shopInputs.forEach((i) => (i.disabled = false));
+      custInputs.forEach((i) => (i.disabled = true));
+    } else {
+      shopForm.style.display = "none";
+      custForm.style.display = "block";
+
+      shopInputs.forEach((i) => (i.disabled = true));
+      custInputs.forEach((i) => (i.disabled = false));
+    }
+  }
+
+  // Show / Hide password
+  document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("togglePassword")) {
+      const input = e.target.previousElementSibling;
+
+      if (input.type === "password") {
+        input.type = "text";
+        e.target.classList.replace("fa-eye", "fa-eye-slash");
+      } else {
+        input.type = "password";
+        e.target.classList.replace("fa-eye-slash", "fa-eye");
+      }
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", toggleForm);
+</script>
+
+{% endblock %}

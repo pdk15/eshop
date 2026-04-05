@@ -1,0 +1,101 @@
+/* ===============================
+   GLOBAL PAGE STYLE
+================================ */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===============================
+   AUTH CONTAINER
+================================ */
+.login-container {
+    width: 420px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* ===============================
+   HEADER
+================================ */
+.login-container h2 {
+    margin: 0;
+    padding: 20px;
+    background: #4a90e2;
+    color: #fff;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* ===============================
+   FORM
+================================ */
+.login-container form {
+    padding: 30px;
+}
+
+/* ===============================
+   LABEL
+================================ */
+.login-container label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* ===============================
+   INPUT
+================================ */
+.login-container input[type="email"] {
+    width: 100%;
+    padding: 11px 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-container input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* ===============================
+   BUTTON
+================================ */
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    background: #4a90e2;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-container button:hover {
+    background: #357abd;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 480px) {
+    .login-container {
+        width: 90%;
+    }
+}

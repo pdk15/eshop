@@ -1,0 +1,97 @@
+        /* General page settings */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #000;
+        }
+
+        #invoice-print {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+
+        h2, h3, h4 {
+            margin: 5px 0;
+        }
+
+        hr {
+            border: 1px solid #333;
+        }
+
+        /* Customer & invoice info */
+        .invoice-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .invoice-info div {
+            width: 48%;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #333;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Totals */
+        .totals {
+            width: 300px;
+            float: right;
+            margin-top: 20px;
+        }
+
+        .totals table {
+            border: none;
+        }
+
+        .totals td {
+            border: none;
+            padding: 5px 10px;
+        }
+
+        .totals td.label {
+            text-align: left;
+        }
+
+        .totals td.value {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        /* QR Code */
+        .qr-code {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        /* Print adjustments */
+        @media print {
+            body {
+                margin: 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .totals {
+                float: none;
+                margin: 20px 0 0 0;
+            }
+        }

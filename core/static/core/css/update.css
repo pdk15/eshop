@@ -1,0 +1,171 @@
+/* ===== Container Styles ===== */
+.add-product-form{
+    max-width: 600px;
+    max-height: 900px;
+
+    margin: 30px auto;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    transition: transform 0.3s ease;
+    overflow: visible;
+}
+
+/* ===== Title Styles ===== */
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #f2e9e9;
+}
+.sidebar h2 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #fff;   /* stays white */
+}
+
+/* Add product form heading only */
+.add-product-form h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #333;   /* dark text, visible on white background */
+}
+/* ===== Form Field Styles ===== */
+form p {
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #444;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="email"],
+form input[type="password"],
+form input[type="date"],
+form textarea,
+form select {
+  width: 50%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+form textarea {
+  height: 40px;   /* ✅ Small, visible height */
+  resize: vertical;
+}
+form input:focus,
+form textarea:focus,
+form select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color:orange ;
+  color: white;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color:red;
+}
+
+/* ===== Button Layout ===== */
+.d-flex {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+/* ===== Responsive Layout ===== */
+@media (max-width: 576px) {
+  .d-flex {
+    flex-direction: column;
+  }
+}
+ .button-row {
+    display: flex;
+    justify-content: center; /* Save = left, Cancel = right */
+    gap:30px;
+    margin-top: 25px;
+  }
+
+
+/* Update service  */
+
+  .form-container {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-fields p {
+    margin-bottom: 15px;
+}
+
+.save-btn {
+    background: #0984e3;
+    color: white;
+    border-radius: 6px;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+.save-btn:hover {
+    background: #0b5ed7;
+    transform: translateY(-3px);
+}
+
+.cancel-btn {
+    background: #d63031;
+    color: white;
+    border-radius: 6px;
+    padding: 10px 20px;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+
+.cancel-btn:hover {
+    background: #e84118;
+    transform: translateY(-3px);
+}
+
+.button-row {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}

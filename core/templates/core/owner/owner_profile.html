@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'core/css/profile.css' %}" />
+
+<div class="profile-container">
+  <h2>Shop Owner Profile</h2>
+
+  <form method="POST">
+    {% csrf_token %} {{ form.as_p }}
+
+    <button type="submit" class="btn save-btn">Update Profile</button>
+    <a href="{% url 'shop_analysis' %}" class="btn cancel-btn">Back</a>
+  </form>
+</div>
+{% endblock %}

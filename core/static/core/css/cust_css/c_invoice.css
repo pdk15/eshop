@@ -1,0 +1,219 @@
+body {
+    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+.card {
+  
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #2c3e50;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+tr:hover {
+    background: #f9f9f9;
+}
+
+.download-btn {
+    background: #3498db;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.download-btn:hover {
+    background: #2980b9;
+}
+
+.paid {
+    color: green;
+    font-weight: bold;
+}
+
+.pending {
+    color: red;
+    font-weight: bold;
+}
+
+.empty {
+    text-align: center;
+    color: gray;
+}
+body {
+    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+.invoice-wrapper {
+  width: 800px;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin: 40px 60px 0px 200px;
+}
+
+.title {
+  text-align: center;
+  color: #1e3a8a;
+
+
+}
+
+.shop {
+  text-align: center;
+}
+
+.invoice-grid {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.invoice-table th,
+.invoice-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.total {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.thanks {
+  text-align: center;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+.invoice-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Common Button Style */
+.invoice-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Print Button */
+.btn.print {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  padding-top: 15px;
+    padding-bottom: 15px;
+
+}
+
+/* Save Button */
+.btn.download {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+/* WhatsApp Button */
+.btn.whatsapp {
+  background: linear-gradient(135deg, #25d366, #1ebe5d);
+}
+
+/* Back Button */
+.btn.back {
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+}
+
+/* Hover Effects */
+.invoice-buttons .btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Click Effect */
+.invoice-buttons .btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Icons */
+.invoice-buttons i {
+  font-size: 15px;
+}
+
+/* Hide buttons on print */
+@media print {
+  .no-print {
+    display: none;
+  }
+}
+
+/* =========================
+   PRINT MODE (IMPORTANT)
+========================= */
+
+@media print {
+
+  body * {
+    visibility: hidden;
+  }
+
+  #print-area,
+  #print-area * {
+    visibility: visible;
+  }
+
+  #print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .no-print {
+    display: none;
+  }
+
+}

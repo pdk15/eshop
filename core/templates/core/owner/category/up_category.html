@@ -1,0 +1,16 @@
+{% extends "core/base.html" %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'core/css/service_category.css' %}" />
+
+<div class="cat-container">
+  <h2>Update Category</h2>
+
+  <form method="POST">
+
+  <form method="POST">
+    {% csrf_token %} {{ form.as_p }}
+
+    <button type="submit" class="btn1 btn-primary"><i class="fa fa-save"> </i> Save</button>
+    <a href="{% url 'cat_list' %}" class="btn1 btn-secondary">⬅ Back</a>
+  </form>
+</div>
+{% endblock %}

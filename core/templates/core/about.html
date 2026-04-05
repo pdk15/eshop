@@ -1,0 +1,36 @@
+{% extends "core/home_base.html" %} {% load static %} {% block title %}About{% endblock %} {% block content %}
+
+<!-- ✅ CSS SHOULD BE INSIDE CONTENT OR BASE -->
+<link rel="stylesheet" href="{% static 'core/css/about.css' %}" />
+
+<section class="about-section">
+  <h1>About R.K Electronics</h1>
+
+  <p class="desc">
+    We provide high-quality electronics repair and installation services.
+  </p>
+
+  {% if shop %}
+  <div class="info-box">
+    <p><strong>📍 Address:</strong> {{ shop.address }}</p>
+    <p><strong>📞 Phone:</strong> {{ shop.phone }}</p>
+    <p><strong>📧 Email:</strong> {{ shop.email }}</p>
+  </div>
+  <div class="social-links">
+    <a href="#" target="_blank" class="icon insta">
+      <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="#" target="_blank" class="icon fb">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <a href="https://wa.me/{{ shop.whatsapp }}" target="_blank" class="icon wa">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  {% endif %}
+</section>
+
+{% endblock %}
