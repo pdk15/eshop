@@ -1,0 +1,136 @@
+/* ================== report_stock.css ================== */
+
+/* PAGE CONTAINER */
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin: 30px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* TABLE WRAPPER */
+.table-wrapper {
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    background: #fff;
+    padding: 15px;
+}
+
+/* REPORT TABLE */
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+/* TABLE HEADERS */
+.report-table th {
+    padding: 15px 20px;
+    background: linear-gradient(90deg, #007bff, #00bfff);
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+/* TABLE CELLS */
+.report-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #555;
+    vertical-align: middle;
+}
+
+/* HOVER EFFECT */
+.report-table tbody tr:hover {
+    background-color: #f1f9ff;
+    transform: scale(1.01);
+    transition: 0.2s;
+}
+
+/* PROFIT HIGHLIGHT */
+.report-table td.profit {
+    font-weight: 600;
+    color: #28a745; /* green for positive profit */
+}
+
+/* VIEW BUTTON */
+.btn-view {
+    padding: 6px 14px;
+    border-radius: 6px;
+    background-color: #17a2b8;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-view:hover {
+    background-color: #117a8b;
+}
+
+/* EMPTY ROW */
+.report-table td[colspan="8"] {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 20px 0;
+}
+
+/* ========================= RESPONSIVE ========================= */
+@media screen and (max-width: 768px) {
+    .report-table thead {
+        display: none;
+    }
+
+    .report-table, 
+    .report-table tbody, 
+    .report-table tr, 
+    .report-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .report-table tr {
+        margin-bottom: 15px;
+        border-bottom: 2px solid #f1f1f1;
+        padding-bottom: 10px;
+    }
+
+    .report-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .report-table td::before {
+        position: absolute;
+        left: 15px;
+        width: 45%;
+        font-weight: 600;
+        text-align: left;
+        color: #555;
+    }
+
+    .report-table td:nth-of-type(1)::before { content: "Date"; }
+    .report-table td:nth-of-type(2)::before { content: "Total Invoices"; }
+    .report-table td:nth-of-type(3)::before { content: "Items Sold"; }
+    .report-table td:nth-of-type(4)::before { content: "Gross Sales"; }
+    .report-table td:nth-of-type(5)::before { content: "Tax"; }
+    .report-table td:nth-of-type(6)::before { content: "Net Sales"; }
+    .report-table td:nth-of-type(7)::before { content: "Profit"; }
+    .report-table td:nth-of-type(8)::before { content: "Details"; }
+
+    /* Center the view button on mobile */
+    .btn-view {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin: 5px 0;
+    }
+}

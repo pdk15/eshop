@@ -1,0 +1,46 @@
+.about-section {
+  padding: 50px;
+  text-align: center;
+}
+
+.desc {
+  max-width: 600px;
+  margin: 20px auto;
+  color: #555;
+}
+
+.info-box {
+  background: #f1f5f9;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+  width: 60%;
+}
+.social-links {
+  margin-top: 20px;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  margin: 10px;
+  border-radius: 50%;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* Colors */
+.insta { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+.fb { background: #1877f2; }
+.wa { background: #25d366; }
+
+/* Hover Effect */
+.icon:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}

@@ -1,0 +1,92 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #eef2f7, #d9e4f5);
+}
+
+/* Container Card */
+.card {
+  max-width: 600px;
+  margin: 40px auto;  /* center horizontally */
+}
+
+
+/* Header */
+.page-header {
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.page-header h2 {
+  margin: 0;
+  text-align: center;
+  color: #333;
+}
+
+/* Buttons */
+.actions {
+  display: flex;
+  gap: 10px;
+padding: 10px 140px ;
+
+}
+
+.btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+/* Back Button */
+.btn.back {
+  background: #312a25;
+  color: #ffffff;
+}
+
+.btn.back:hover {
+  background: #6b737f;
+}
+
+/* Pay Button */
+.btn.pay {
+  background: #4f46e5;
+  color: white;
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+
+.btn.pay:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+/* Payment Box */
+.payment-box {
+  text-align: center;
+  padding: 30px 20px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background: #f9fafb;
+  max-width: 400px;
+  margin: auto;
+}
+
+
+.payment-box h3 {
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+/* Amount */
+.amount {
+  font-size: 20px;
+  font-weight: bold;
+  color: #16a34a;
+  margin-bottom: 20px;
+}

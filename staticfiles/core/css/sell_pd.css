@@ -1,0 +1,162 @@
+body {
+  background-color: #f4f6f9;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* MAIN CONTAINER (THIS WAS MISSING) */
+.sell-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  width: 90%;
+  padding-top: 20px;
+  margin: 60px auto;
+}
+
+/* LEFT SIDE TABLE */
+.invoice-section {
+  width: 50%;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.invoice-section table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.invoice-section th, .invoice-section td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.invoice-section h3 {
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* RIGHT SIDE FORM */
+.sell-form {
+  width: 65%;
+  height:  55%;
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.sell-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.sell-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #555;
+}
+
+.sell-form input,
+.sell-form select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.sell-form input:focus,
+.sell-form select:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
+  outline: none;
+}
+
+.sell-form input[readonly] {
+  background-color: #f1f5f9;
+  cursor: not-allowed;
+}
+
+.btn {
+   width: 20%;
+  margin: 10px auto;   /* centers horizontally */
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  
+}
+.button-row {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.button-row .btn {
+  min-width: 140px;
+}
+
+.sell-form button:hover {
+  background: #4338ca;
+}
+
+/* BACK BUTTON FIX */
+.btn-secondary {
+   width: 20%;
+  margin: 10px auto;   /* centers horizontally */
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  background: #e5464e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+  display: block;  
+}
+
+.btn-third:hover {
+  background-color: orangered;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* RESPONSIVE FIX */
+@media (max-width: 768px) {
+  .sell-container {
+    flex-direction: column;
+  }
+  .invoice-section, .sell-form {
+    width: 100%;
+  }
+}
+.back{
+  background: #17a2b8;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+
+}
+
+.back:hover{
+  color: #ffffff;
+  background: #0c7080;
+  font-weight: bold;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}

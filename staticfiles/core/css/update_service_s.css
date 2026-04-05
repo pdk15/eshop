@@ -1,0 +1,135 @@
+/* =========================
+   PAGE BACKGROUND
+========================= */
+body {
+    background: linear-gradient(135deg, #74b9ff, #81ecec);
+    font-family: "Segoe UI", sans-serif;
+}
+
+
+/* =========================
+   FORM CONTAINER
+========================= */
+.service-container {
+    max-width: 550px;
+    margin: 60px auto;
+    background: #ffffff;
+    padding: 35px 40px;
+    border-radius: 14px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+    animation: fadeIn 0.4s ease;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+.form-title {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2d3436;
+}
+
+
+/* =========================
+   DJANGO FORM STYLE
+========================= */
+.form-fields p {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.form-fields label {
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+/* inputs */
+.form-fields input,
+.form-fields select,
+.form-fields textarea {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #dcdde1;
+    font-size: 15px;
+    transition: 0.25s;
+}
+
+.form-fields input:focus,
+.form-fields select:focus,
+.form-fields textarea:focus {
+    border-color: #0984e3;
+    box-shadow: 0 0 0 3px rgba(9,132,227,0.15);
+    transform: scale(1.02);
+    outline: none;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+.form-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 5px;
+    transition: 0.25s;
+}
+
+/* update button */
+.save-btn {
+    background: linear-gradient(135deg, #00b894, #00cec9);
+    color: white;
+}
+
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+}
+
+/* back button */
+.back-btn {
+    background: #636e72;
+    color: white;
+}
+
+.back-btn:hover {
+    background: #2d3436;
+}
+
+
+/* =========================
+   SUCCESS MESSAGE
+========================= */
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

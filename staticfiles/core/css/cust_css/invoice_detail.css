@@ -1,0 +1,205 @@
+/* ===============================
+   PAGE BACKGROUND
+================================ */
+body {
+    background: linear-gradient(135deg, #79c2d0, #5a8dee);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* ===============================
+   CARD CONTAINER
+================================ */
+.card {
+    width: 85%;
+    margin: 40px auto;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border-radius: 14px;
+    padding: 30px 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.card h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+
+/* ===============================
+   BACK BUTTON
+================================ */
+.btn.back {
+    background: #34495e;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+    margin-bottom: 10px;
+}
+
+.btn.back:hover {
+    background: #2c3e50;
+}
+
+
+/* ===============================
+   TABLE
+================================ */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* HEADER */
+.invoice-table thead {
+    background: #a1c0ff;
+}
+
+.invoice-table th {
+    padding: 14px;
+    text-align: center;
+    font-weight: 600;
+    color: #34495e;
+    border-bottom: 2px solid #eaeaea;
+}
+
+/* BODY */
+.invoice-table td {
+    padding: 14px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+}
+
+/* ROW HOVER EFFECT */
+.invoice-table tbody tr {
+    transition: 0.25s ease;
+}
+
+.invoice-table tbody tr:hover {
+    background: #f9fbff;
+    transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ===============================
+   STATUS BADGES
+================================ */
+.paid,
+.pending {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Paid */
+.paid {
+    background: #d4edda;
+    color: #155724;
+}
+
+/* Pending */
+.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+
+/* ===============================
+   BUTTONS
+================================ */
+.btn {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+/* DOWNLOAD BUTTON */
+.btn-download {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+.btn-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+}
+
+/* PAY BUTTON */
+.btn.pay {
+    background: linear-gradient(135deg, #ff9800, #ff5722);
+    color: white;
+    margin-left: 6px;
+}
+
+.btn.pay:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+}
+
+
+/* ===============================
+   EMPTY STATE
+================================ */
+.empty {
+    padding: 25px;
+    color: #777;
+    font-style: italic;
+}
+
+
+/* ===============================
+   ANIMATION
+================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ===============================
+   RESPONSIVE DESIGN
+================================ */
+@media (max-width: 768px) {
+
+    .card {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .invoice-table th,
+    .invoice-table td {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}

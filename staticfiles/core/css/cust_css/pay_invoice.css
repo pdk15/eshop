@@ -1,0 +1,125 @@
+/* Background */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+}
+
+/* Card Container */
+.card {
+  max-width: 420px;
+  margin: 60px auto;
+  background: #fff;
+  padding: 30px 35px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Heading */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.page-header h2 {
+  margin: 0;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.card h3 {
+  margin-bottom: 20px;
+  color: #555;
+  font-weight: normal;
+}
+
+/* Label */
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #444;
+}
+
+/* Select + Input */
+select,
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+select:focus,
+input:focus {
+  border-color: #3399cc;
+  outline: none;
+  box-shadow: 0 0 5px rgba(51, 153, 204, 0.3);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 1px;
+  border-radius: 8px;
+  margin-bottom: 1px;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+    font-weight: bold;
+
+}
+
+/* Primary Button (Pay) */
+.btn.pay {
+  background: linear-gradient(135deg, #3399cc, #287ea8);
+  color: white;
+  font-weight: 600;
+}
+
+.btn.pay:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(51, 153, 204, 0.4);
+}
+
+/* Back Button */
+.btn.back {
+  background: #fae24a;
+  color: #333;
+  text-decoration: none;
+  align-items: center;
+}
+
+.btn.back:hover {
+  background: #ddd;
+}
+
+/* Razorpay Section */
+#razorpaySection {
+  margin-top: 15px;
+}
+
+/* Smooth Animation */
+#upiSection,
+#netSection,
+#razorpaySection {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Mobile Responsive */
+@media (max-width: 500px) {
+  .card {
+    margin: 20px;
+    padding: 25px;
+  }
+}
