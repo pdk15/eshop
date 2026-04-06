@@ -10,7 +10,6 @@ from datetime import timedelta
 from dateutil.relativedelta import relativedelta
 import uuid
 from django.template.loader import get_template
-from xhtml2pdf import pisa
 from django.contrib.auth.decorators import login_required
 from .utils import is_under_warranty
 from django.contrib.auth.hashers import make_password, check_password
@@ -29,7 +28,6 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from weasyprint import HTML
 from django.template.loader import render_to_string
-from django.views.decorators.cache import never_cache
 
 
 # ---------- Shop Owner Registration ----------
