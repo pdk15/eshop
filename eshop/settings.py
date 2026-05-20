@@ -32,9 +32,6 @@ DEBUG = False
 
 # ALLOWED_HOSTS = ["*"]
 
-ALLOWED_HOSTS = [
-    "eshop-1-cp5m.onrender.com"
-]
 
 # Application definition
 
@@ -175,6 +172,14 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://eshop-1-cp5m.onrender.com"
+ALLOWED_HOSTS = [
+    "eshop-3-sxy4.onrender.com",
+    "localhost",
+    "127.0.0.1",
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://eshop-3-sxy4.onrender.com",
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
