@@ -23,13 +23,18 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-k=%@)rli_cbd(#^&j!@2w=d(t^503++0m97=+r2+x+waw_++n-'
+# SECRET_KEY = 'django-insecure-k=%@)rli_cbd(#^&j!@2w=d(t^503++0m97=+r2+x+waw_++n-'
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["*"]
 
+ALLOWED_HOSTS = [
+    "eshop-1-cp5m.onrender.com"
+]
 
 # Application definition
 
@@ -46,15 +51,14 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-        'whitenoise.middleware.WhiteNoiseMiddleware',
-
-
 ]
 
 ROOT_URLCONF = 'eshop.urls'
@@ -169,3 +173,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://eshop-1-cp5m.onrender.com"
+]
